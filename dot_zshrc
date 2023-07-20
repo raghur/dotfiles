@@ -92,7 +92,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 MYZSH=~/.zsh.d
-alias cb='flatpak run app.getclipboard.Clipboard'
+alias cb='app.getclipboard.Clipboard'
+alias cm='chezmoi'
 setopt nullglob
 for config_file ($MYZSH/*.zsh); do
   # echo "sourcing $config_file"
@@ -118,10 +119,6 @@ zle -N reset-prompt-and-accept-line
 bindkey '^m' reset-prompt-and-accept-line
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-# export MCFLY_KEY_SCHEME=im
-# export MCFLY_FUZZY=2
-# export MCFLY_RESULTS=50
-# eval "$(mcfly init zsh)"
 
 function start_tmux() {
     if type tmux &> /dev/null; then
