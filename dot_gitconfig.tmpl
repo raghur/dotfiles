@@ -1,0 +1,99 @@
+[user]
+	name = Raghu Rajagopalan
+	email = raghu.rajagopalan@gmail.com
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+    commit = yellow bold
+    whitespace = red reverse
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+[format]
+	pretty = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+[alias]
+	a = add
+	chunkyadd = add --patch
+	l = log --graph --date=short
+	changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
+	short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
+	changelog = log --pretty=format:\" * %s\"
+	shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --date-order
+	s = status
+	st = status
+	stat = status
+	c = commit -m
+	ca = commit -am
+	ci = commit
+	amend = commit --amend
+	ammend = commit --amend
+	d = diff
+	dc = diff --cached
+	dw = diff --color-words
+	dcw = diff --color-words --cached
+	last = diff HEAD^
+	co = checkout
+	nb = checkout -b
+	b = branch -v
+	r = remote -v
+	pullm = pull origin master
+	pl = pull
+	pushm = push origin master
+	pu = push
+	ss = stash
+	sl = stash list
+	sa = stash apply
+	sd = stash drop
+	unstage = reset HEAD
+	uncommit = reset --soft HEAD^
+	filelog = log -u
+	mt = mergetool
+	vdiff = difftool -y -t vimdiff
+	permission-reset = "!git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
+	rms = "!f(){ git rm --cached \"$1\";rm -r \"$1\";git config -f .gitmodules --remove-section \"submodule.$1\";git config -f .git/config --remove-section \"submodule.$1\";git add .gitmodules; };"
+	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\"  && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
+	lb="branch --sort=-committerdate"
+[merge]
+	tool = vscode
+	tool = kdiff3
+[mergetool]
+	keepBackup = false
+[core]
+	autocrlf = input
+	filemode = false
+	editor = nvim
+	fscache = true
+	preloadindex = true
+	excludesfile = ~/.gitignore_global
+	symlinks = true
+[diff]
+	guitool = kdiff3
+	tool = kdiff3
+[difftool "kdiff3"]
+	cmd = kdiff3 $LOCAL $REMOTE
+[push]
+	default = current
+[gc]
+	auto = 1
+[credential]
+	helper = cache
+[include]
+	path = .gitconfig.{{ .chezmoi.hostname }}
+[mergetool "vscode"]
+	cmd=code -n --wait --merge $REMOTE $LOCAL $BASE $MERGED
+[mergetool "kdiff3"]
+	path = /usr/bin/kdiff3
