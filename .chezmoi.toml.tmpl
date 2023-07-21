@@ -1,0 +1,5 @@
+{{- $secrets := promptString "Path to kdbx file"}}
+[data]
+    secretsdb="{{ $secrets }}"
+[keepassxc]
+    database={{ $secrets | quote }}
