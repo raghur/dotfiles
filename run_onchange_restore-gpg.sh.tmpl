@@ -1,0 +1,9 @@
+{{ if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+echo -n '{{ keepassxcAttachment "Gpg-main"  "private.gpg" }}' > /tmp/private.gpg
+echo -n '{{ keepassxcAttachment "Gpg-main"  "public.gpg" }}' > /tmp/public.gpg
+echo -n '{{ keepassxcAttachment "Gpg-main"  "trust.gpg" }}' > /tmp/trust.gpg
+gpg --import /tmp/private.gpg
+gpg --import /tmp/public.gpg
+gpg --import-ownertrust /tmp/trust.gpg
+{{ end -}}
