@@ -1,0 +1,104 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // leader mappings
+        {
+            "before": [ "<leader>", "w" ],
+            "commands": [ ":wall" ]
+        },
+        {
+            "before": [ "<leader>", "h" ],
+            "commands": [ ":nohl" ]
+        },
+        {
+            "before": [ "<leader>", "<space>", ],
+            "commands": [ "workbench.action.quickOpen" ]
+        },
+        {
+            "before": [ "<leader>", ".", ],
+            "commands": [ "editor.action.quickFix" ]
+        },
+        {
+            "before": [ "<leader>", "r", ],
+            "commands": [ "editor.action.rename" ]
+        },
+        {
+            "before": [ "<leader>", "t", ],
+            "commands": [ "workbench.action.showAllSymbols" ]
+        },
+        {
+            "before": [ "<leader>", "]", ],
+            "commands": [ "editor.action.marker.nextInFiles" ]
+        },
+        {
+            "before": [ "<leader>", "[", ],
+            "commands": [ "editor.action.marker.previousInFiles" ]
+        },
+        // g mappings
+        {
+            "before": [ "g", "d", ],
+            "commands": [ "editor.action.revealDefinition" ]
+        },
+        {
+            "before": [ "g", ".", ],
+            "commands": [ "editor.action.refactor.preview" ]
+        },
+        {
+            "before": [ "g", "r", ],
+            "commands": [ "editor.action.goToReferences" ]
+        },
+        {
+            "before": [ "g", "o", ],
+            "commands": [ "workbench.action.gotoSymbol" ]
+        },
+        {
+            "before": [ "g", "e", ],
+            "commands": [ "workbench.action.compareEditor.openSide" ],
+        },
+        {
+            "key": "ctrl+o",
+            "command": "workbench.action.navigateBack"
+        },
+        {
+            "key": "ctrl+i",
+            "command": "workbench.action.navigateForward"
+        },
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    },
+    "redhat.telemetry.enabled": false,
+    "git.confirmSync": false,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+    "vim.normalModeKeyBindings": [
+    
+    ],
+    "gitlens.views.searchAndCompare.files.layout": "tree",
+    "jasmineExplorer.nodeArgv": [
+        " [\"-r\", \"ts-node/register\"]"
+    ],
+    "editor.minimap.autohide": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "javascript.preferGoToSourceDefinition": true,
+    "typescript.experimental.tsserver.web.enableProjectWideIntellisense": true,
+    "typescript.preferGoToSourceDefinition": true,
+    "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false
+}
