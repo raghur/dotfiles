@@ -1,0 +1,11 @@
+#!/bin/bash
+# Issue a "new login" command for currently running login manager.
+# ...assuming there can be only one.
+pidof lightdm &> /dev/null && dm-tool switch-to-greeter
+pidof lxdm &> /dev/null && lxdm -c USER_SWITCH
+pidof gdm &> /dev/null && gdmflexiserver
+pidof kdm &> /dev/null && kdmctl reserve
+if [[ -e /usr/bin/qdbus ]]
+then
+    qdbus --system org.freedesktop.DisplayManager /org/freedesktop/DisplayManager/Seat0 org.freedesktop.DisplayManager.Seat.SwitchToGreeter
+fi

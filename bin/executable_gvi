@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#[raghuramanr@MTALT166 ~$] find /tmp/ -type f
+#/tmp/path with spaces/anotherfile.txt
+#/tmp/path with spaces/file with spaces.txt
+#/tmp/path with spaces/more spaces.txt
+#[raghuramanr@MTALT166 ~$] find /tmp/ -type f -print0|xargs -0 gvi
+
+VIM="`cygpath -au $UTILS/gvim/gvim.exe`"
+files=""
+WAIT=0
+program="$(basename "$0")"
+if [ "$program" == "gviw" ]; then
+    WAIT=1
+fi
+for ARG in "$@"
+do
+    if [[ "$ARG" == *:* ]]; then
+        #echo "path contains :"
+        files=$files $ARG
+    else
+        #echo "linux path"
+        file="$(cygpath -am "$ARG")"
+        file=${file// /\\ }
+        files="$files $file"
+    fi
+done
+echo $files
+if [ $WAIT == "0" ]; then
+    $VIM --servername GVIM --remote-silent $files
+else
+    $VIM --servername GVIM --remote-tab-wait-silent $files
+fi

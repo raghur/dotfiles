@@ -1,0 +1,68 @@
+UXTerm*renderFont: true
+UXTerm*faceName: Fantasque Sans Mono
+UXTerm*faceSize: 13
+UXTerm*metaSendsEscape: true
+UXTerm*termName: xterm-256color
+UXTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font()
+
+xscreensaver.splash: false
+! xft
+!Xft.autohint: true
+!Xft.antialias: true
+!Xft.dpi: 92
+!Xft.hinting: true
+!Xft.hintstyle: hintfull
+!Xft.lcdfilter: lcddefault
+!Xft.rgba: rgb
+
+!font settings
+!xscreensaver.Dialog.headingFont:        -misc-dejavu sans-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.bodyFont:           -misc-dejavu sans-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.labelFont:          -misc-dejavu sans-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.unameFont:          -misc-dejavu sans-medium-r-*-*-26-*-*-*-*-*-*-*
+!xscreensaver.Dialog.buttonFont:         -misc-dejavu sans-medium-r-*-*-20-*-*-*-*-*-*-*
+!xscreensaver.Dialog.dateFont:           -misc-dejavu sans-medium-r-*-*-12-*-*-*-*-*-*-*
+!xscreensaver.passwd.passwdFont:         -misc-dejavu sans-medium-r-*-*-20-*-*-*-*-*-*-*
+ 
+xscreensaver.Dialog.labelFont:  -*-helvetica-medium-r-*-*-*-100-*-*-*-*-iso8859-1
+xscreensaver.Dialog.unameFont:	-*-helvetica-medium-r-*-*-*-100-*-*-*-*-iso8859-1
+xscreensaver.Dialog.passwdFont:	-*-helvetica-medium-r-*-*-*-100-*-*-*-*-iso8859-1
+xscreensaver.Dialog.dateFont:	-*-helvetica-medium-r-*-*-*-80-*-*-*-*-iso8859-1
+!general dialog box (affects main hostname, username, password text)
+ 
+xscreensaver.Dialog.foreground:             #CCCCCC
+xscreensaver.Dialog.background:             #333333
+xscreensaver.Dialog.topShadowColor:         #000000
+xscreensaver.Dialog.bottomShadowColor:      #000000
+xscreensaver.Dialog.text.foreground:        #DDDDDD
+xscreensaver.Dialog.text.background:        #666666
+!xscreensaver.Dialog.Button.foreground:      #CCCCCC
+!xscreensaver.Dialog.Button.background:      #666666
+xscreensaver.passwd.thermometer.foreground: #0000FF
+xscreensaver.passwd.thermometer.background: #666666
+xscreensaver.Dialog.logo.width:		0
+xscreensaver.Dialog.logo.height:		150
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #666666
+xscreensaver.Dialog.text.background:    #ffffff
+xscreensaver.Dialog.internalBorderWidth:16
+xscreensaver.Dialog.borderWidth:        1
+xscreensaver.Dialog.shadowThickness:    2
+xscreensaver.passwd.uname:                  True
+
+!datestamp format--see the strftime(3) manual page for details
+xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
+xscreensaver.passwd.heading.label:		
+xscreensaver.passwd.body.label:		
+xscreensaver.passwd.unlock.label:		OK
+xscreensaver.passwd.login.label:		New Session
+xscreensaver.passwd.user.label:		Username:
+xscreensaver.passwd.passwd.label:		Password:
+
+xscreensaver.splash.heading.label:		XScreenSaver %s
+xscreensaver.splash.body.label:		Copyright \251 1991-2020 by
+xscreensaver.splash.body2.label:		Jamie Zawinski <jwz@jwz.org>
+xscreensaver.splash.demo.label:		Settings
+xscreensaver.splash.help.label:		Help

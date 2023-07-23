@@ -1,0 +1,1 @@
+choco install -y openvpn pandoc nodejs python3 git gitextensions synctrayzor listary keepass sublimetext3.packagecontrol visualstudiocode greenshot licecap 7zip sysinternals procexp curl conemu wget chromium windirstat

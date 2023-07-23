@@ -1,0 +1,16 @@
+#!/bin/bash
+pushd `dirname $1`
+BASENAME=`basename $1 .adoc`
+FMT=docx
+if [[ x$2 != "x" ]]; then
+    FMT=$2
+fi
+if [[ $FMT == "pdf" ]]; then
+    asciidoctor-pdf -r asciidoctor-diagram -a allow-uri-read $1
+else
+    asciidoctor -r asciidoctor-diagram -a allow-uri-read -b docbook -o "$BASENAME.xml" $1
+    pandoc  -i "$BASENAME.xml" -f docbook -t $FMT -o "$BASENAME.$FMT"
+fi
+popd
+
+
