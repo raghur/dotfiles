@@ -1,0 +1,42 @@
+let mapleader=" "
+Plug 'tpope/vim-commentary'
+set commentary
+set surround
+set argtextobj
+set textobj-entire
+set ignorecase
+set ReplaceWithRegister
+let g:argtextobj_pairs="[:],(:),<:>"
+nmap <leader><space> <Action>(SearchEverywhere)
+vmap <leader><space> <Action>(SearchEverywhere)
+nmap <leader>p <Action>(GotoNextError)
+vmap <leader><Enter> <Action>(Rider.Plugins.FSharp.SendToFsi)
+nmap <leader><Enter> <Action>(Rider.Plugins.FSharp.SendToFsi)
+nmap <leader>. <Action>(ShowIntentionActions)
+nmap <leader>r <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>g <Action>(FileStructurePopup)
+nmap <leader>= <Action>(FileStructurePopup)
+nmap <leader>a <Action>(Switcher)
+" nmap p <Action>($Paste)
+nmap gcc <Action>(CommentByLineComment)
+vmap gcc <Action>(CommentByLineComment)
+nnoremap <leader>w :w<cr>
+inoremap jk <Esc>
+set clipboard+=ideaput,unnamed
+"" delete without yanking
+"nnoremap <leader>d "_d
+"vnoremap <leader>d "_d
+""
+"" replace currently selected text with default register
+"" without yanking it
+"vnoremap <leader>p "_dP
+
+"nmap <F5> <Action>(Debug)
+"nmap \i <Action>(StepInto)
+"nmap \r <Action>(Resume)
+"nmap \o <Action>(StepOut)
+"nmap \n <Action>(StepOver)
+"nmap \b <Action>(ToggleLineBreakpoint)
+
+nnoremap \cr :source ~/.ideavimrc<CR>
+nnoremap \ce :e ~/.ideavimrc<CR>
