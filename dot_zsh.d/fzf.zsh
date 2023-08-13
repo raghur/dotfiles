@@ -11,4 +11,7 @@ fi
 
 # Key bindings
 # ------------
-source "/home/raghu/.fzf/shell/key-bindings.zsh"
+
+if [ -e "~/.fzf/shell/key-bindings.zsh" ]; then
+    source "~/.fzf/shell/key-bindings.zsh"
+fi

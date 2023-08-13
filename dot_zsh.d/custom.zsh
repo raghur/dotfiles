@@ -79,12 +79,12 @@ alias proot='pushd $(git rev-parse --show-toplevel)'
 setopt correct
 unsetopt correctall
 # alias gcb="git branch -av |fzf --preview 'echo {}|awk \"{print \\\$1}\"|xargs git lg --color=always' | awk '{print \$1}' | xargs git checkout"
-unalias gco
+# unalias gco
 function gco() {
   local selected=$(_fzf_git_each_ref --no-multi)
   [ -n "$selected" ] && git checkout "$selected"
 }
-unalias gsta
+# unalias gsta
 function gsta() {
   local selected=$(_fzf_git_stashes --no-multi)
   [ -n "$selected" ] && git stash show "$selected"
