@@ -1,1 +1,6 @@
 {{- keepassxcAttachment "ssh private keys" "config" -}}
+{{ if eq .chezmoi.os "darwin" -}}
+Host *
+	UseKeychain yes
+{{ end -}}
+
