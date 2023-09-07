@@ -2,7 +2,6 @@
 if [[ ! -d ~/.zplug ]];then
     git clone https://github.com/b4b4r07/zplug ~/.zplug
 fi
-source ~/.zsh.d/fzf.zsh
 eval "$(direnv hook zsh)"
 KUBE_PS1_NS_ENABLE=false
 KUBE_PS1_SYMBOL_ENABLE=false
@@ -31,8 +30,12 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "zsh-users/zsh-completions"
 # zplug "marlonrichert/zsh-autocomplete"
+if command -v starship > /dev/null ; then
+    eval "$(starship init zsh)"
+else 
+    zplug 'agkozak/agkozak-zsh-prompt'
+fi
 zplug "agkozak/zsh-z"
-zplug "agkozak/agkozak-zsh-prompt"
 zplug "andrewferrier/fzf-z"
 zplug "raghur/zsh-arduino"
 zplug "~/code/zsh-xclip", from:local
@@ -43,10 +46,10 @@ zplug "brookhong/zsh-autosuggestions"
 zplug "zsh-users/zaw", use:"*.plugin.zsh"
 zplug "ellie/atuin", at:'main', use:"*.plugin.zsh"
 zplug 'junegunn/fzf-git.sh', use:"*.sh"
-
 if ! zplug check; then
     zplug install
 fi
+
 ZSHZ_CASE=smart
 AGKOZAK_LEFT_PROMPT_ONLY=1
 zplug load
@@ -79,12 +82,12 @@ alias proot='pushd $(git rev-parse --show-toplevel)'
 setopt correct
 unsetopt correctall
 # alias gcb="git branch -av |fzf --preview 'echo {}|awk \"{print \\\$1}\"|xargs git lg --color=always' | awk '{print \$1}' | xargs git checkout"
-# unalias gco
+unalias gco
 function gco() {
   local selected=$(_fzf_git_each_ref --no-multi)
   [ -n "$selected" ] && git checkout "$selected"
 }
-# unalias gsta
+unalias gsta
 function gsta() {
   local selected=$(_fzf_git_stashes --no-multi)
   [ -n "$selected" ] && git stash show "$selected"
@@ -152,3 +155,4 @@ function stopwinvm() {
         virsh shutdown --mode agent $domain
     fi
 }
+
