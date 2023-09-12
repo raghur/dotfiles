@@ -128,10 +128,11 @@ function start_tmux() {
         # fi
         #
         # Only attach on new terminal if not already attached
-        if [[ ! $(tmux list-sessions |grep attached) ]]; then
+        if [[ ! $(tmux list-sessions |grep -q attached) ]]; then
             (tmux -2u attach -dt default || tmux -2u new-session -s default)
         fi
     fi
 }
 start_tmux
 
+export EDITOR=nvim
