@@ -76,7 +76,7 @@ alias aptup='sudo apt update'
 alias aptug='sudo apt full-upgrade'
 alias myip="curl ifconfig.co"
 alias vim=nvim
-export NVIM_LISTEN_ADDRESS=/var/tmp/nvim.$USER.sock
+export NVIM_LISTEN_ADDRESS="$XDG_RUNTIME_DIR/nvim.sock"
 alias xnvr=nvr_xdo
 alias proot='pushd $(git rev-parse --show-toplevel)'
 setopt correct
