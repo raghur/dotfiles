@@ -56,7 +56,10 @@ export ZSH_TMUX_AUTOSTART_ONCE=true
 export ZSH_TMUX_AUTOCONNECT_EXISTING=true
 plugins=(history-substring-search)
 if [[ "$(uname)" =~ 'Linux' ]]; then
-    plugins+=(systemd tmux docker kubectl git autopep8 npm pip helm)
+    plugins+=(common-aliases systemd tmux docker kubectl git autopep8 npm pip helm)
+fi
+if [[ "$(uname)" =~ 'Darwin' ]]; then
+    plugins+=(common-aliases tmux docker kubectl git autopep8 npm pip helm)
 fi
 if [[ "$(uname)" =~ 'MSYS_NT' ]]; then
     plugins=+(kubectl helm)
@@ -128,7 +131,7 @@ function start_tmux() {
         # fi
         #
         # Only attach on new terminal if not already attached
-        if $(tmux list-sessions |grep -qv attached); then
+        if [[ ! $(tmux list-sessions |grep attached) ]]; then
             (tmux -2u attach -dt default || tmux -2u new-session -s default)
         fi
     fi
