@@ -124,15 +124,16 @@ bindkey '^m' reset-prompt-and-accept-line
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 function start_tmux() {
-    if type tmux &> /dev/null; then
-        #if not inside a tmux session, and if no session is started, start a new session
-        # if [[ -z "$TMUX" && -z $TERMINAL_CONTEXT ]]; then
-        #     (tmux -2u attach -dt default || tmux -2u new-session -s default)
-        # fi
-        #
-        # Only attach on new terminal if not already attached
-        if [[ ! $(tmux list-sessions |grep attached) ]]; then
-            (tmux -2u attach -dt default || tmux -2u new-session -s default)
+    if type tmux &> /dev/null && test -z "$TMUX"; then
+        if tmux run 2>/dev/null; then
+            # echo "Tmux running"
+            if $(tmux list-sessions | grep -qv attached); then
+                # echo tmux not attached
+                tmux attach -dt default || tmux -2u new-session -s default
+            fi
+        else
+            # echo "Tmux not running"
+            tmux attach -dt default || tmux -2u new-session -s default
         fi
     fi
 }
