@@ -30,9 +30,11 @@ zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "zsh-users/zsh-completions"
 # zplug "marlonrichert/zsh-autocomplete"
-if command -v starship > /dev/null ; then
+if [[ "$(uname)" =~ 'Darwin' ]]; then
+    zplug 'agkozak/agkozak-zsh-prompt'
+elif command -v starship > /dev/null ; then
     eval "$(starship init zsh)"
-else 
+else
     zplug 'agkozak/agkozak-zsh-prompt'
 fi
 zplug "agkozak/zsh-z"
@@ -76,7 +78,7 @@ alias aptup='sudo apt update'
 alias aptug='sudo apt full-upgrade'
 alias myip="curl ifconfig.co"
 alias vim=nvim
-export NVIM_LISTEN_ADDRESS="$XDG_RUNTIME_DIR/nvim.sock"
+export NVIM_LISTEN_ADDRESS=/var/tmp/nvim.$USER.sock
 alias xnvr=nvr_xdo
 alias proot='pushd $(git rev-parse --show-toplevel)'
 setopt correct
@@ -96,6 +98,7 @@ function gsta() {
 # alias gsta="git stash list | fzf --preview-window down,70%,border-horizontal --preview 'echo {}| awk -F: \"{print \\\$1}\" | xargs git diff --color=always' | awk -F: '{print \$1}' | xargs git stash apply" 
 # export FZF_CTRL_R_OPTS=
 bindkey "^[[A" history-beginning-search-backward # after the atuin init
+
 atuin-setup() {
         if ! which atuin &> /dev/null; then return 1; fi
         bindkey '^E' _atuin_search_widget
@@ -116,7 +119,7 @@ atuin-setup() {
                 "--query=${LBUFFER}"
                 "+m"
                 "--bind=ctrl-d:reload(atuin search $atuin_opts -c $PWD),ctrl-r:reload(atuin search $atuin_opts)"
-                "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+                # "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
             )
 
             selected=$(
