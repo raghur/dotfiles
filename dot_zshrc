@@ -129,11 +129,11 @@ function start_tmux() {
             # echo "Tmux running"
             if $(tmux list-sessions | grep -qv attached); then
                 # echo tmux not attached
-                tmux attach -dt default || tmux -2u new-session -s default
+                tmux -2u attach -dt default || tmux -2u new-session -s default
             fi
         else
             # echo "Tmux not running"
-            tmux attach -dt default || tmux -2u new-session -s default
+            tmux -2u attach -dt default || tmux -2u new-session -s default
         fi
     fi
 }
