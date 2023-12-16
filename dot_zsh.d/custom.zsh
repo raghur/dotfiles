@@ -87,6 +87,7 @@ unsetopt correctall
 (alias | grep -q gco)  &&  unalias gco
 function gco() {
   local selected=$(_fzf_git_each_ref --no-multi)
+  selected=${selected/origin\//}
   [ -n "$selected" ] && git checkout "$selected"
 }
 (alias | grep -q gsta) &&  unalias gsta
