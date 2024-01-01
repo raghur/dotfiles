@@ -1,17 +1,31 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
-local gpus = wezterm.gui.enumerate_gpus()
+-- local gpus = wezterm.gui.enumerate_gpus()
 local config = {
+    keys = {
+        { key = '=', mods = 'META', action = act.IncreaseFontSize },
+        { key = '-', mods = 'META', action = act.DecreaseFontSize },
+        { key = '0', mods = 'META', action = act.ResetFontSize },
+        { key = '6', mods = 'META', action = act.ToggleFullScreen },
+        { key = '`', mods = 'META', action = act.ShowLauncher },
+    },
+    allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
     --see https://github.com/wez/wezterm/issues/484#issue-807875301
     enable_wayland = false,
     font = wezterm.font_with_fallback {
-        { family = 'Iosevka Term Curly', weight='ExtraLight'},
-        'FantasqueSansMono Nerd Font',
+        'MonaspiceKr Nerd Font',
+        'Iosevka Nerd Font',
+        'FantasqueSansM Nerd Font',
         'DejaVu Sans Mono',
     },
-    font_size = 13.0,
-    line_height = 1.0,
+    custom_block_glyphs = true,
+    font_size = 15.0,
+    line_height = 0.95,
+    cell_width = 1.07,
+    -- term="xterm-256color",
     harfbuzz_features = {
+        "dlig",
+        "calt",
         "cv06=1",
         "cv14=1",
         "cv32=1",
@@ -19,18 +33,29 @@ local config = {
         "ss07=1",
         "ss09=1",
     },
-    color_scheme = "MonokaiProRistretto (Gogh)",
+    color_scheme = "MonokaiProRistretto ()",
     color_scheme = "Misterioso",
     color_scheme = "Molokai (Gogh)",
+    color_scheme = "terminal.sexy",
     color_scheme = "Molokai",
     front_end = "WebGpu",
-    webgpu_power_preference = "HighPerformance",
+    -- webgpu_power_preference = "HighPerformance",
     -- window_background_opacity = 1.0,
     -- cursor_blink_ease_in ="EaseIn",
     -- cursor_blink_ease_out = "EaseOut",
     -- cursor_blink_rate = 800,
-    -- cursor_thickness = 1.0,
-    default_cursor_style="BlinkingBlock"
+    default_cursor_style="BlinkingBlock",
+    force_reverse_video_cursor = true,
+    font_rules = {
+      {
+        intensity = 'Normal',
+        italic = true,
+        font = wezterm.font {
+          family = 'MonaspiceRn Nerd Font',
+          weight = "ExtraLight",
+        }
+      },
+    },
 }
 -- config.webgpu_preferred_adapter = gpus[2]
 return config
