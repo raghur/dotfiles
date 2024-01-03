@@ -19,6 +19,10 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         // leader mappings
         {
+            "before": [ "<leader>", "b" ],
+            "commands": [ "workbench.action.tasks.runTask" ]
+        },
+        {
             "before": [ "<leader>", "w" ],
             "commands": [ ":wall" ]
         },
@@ -100,5 +104,35 @@
     "javascript.preferGoToSourceDefinition": true,
     "typescript.experimental.tsserver.web.enableProjectWideIntellisense": true,
     "typescript.preferGoToSourceDefinition": true,
-    "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false
+    "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
+    "yaml.schemas": {
+        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.0.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "hediet.vscode-drawio.resizeImages": null,
+    "dotnetAcquisitionExtension.enableTelemetry": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "karmaTestExplorer.autoWatchBatchDelay": 30,
+    "python.analysis.extraPaths": [
+        "/home/raghu/.vscode/extensions/continue.continue-0.6.15-linux-x64"
+    ],
+    "python.autoComplete.extraPaths": [
+        "/home/raghu/.vscode/extensions/continue.continue-0.6.15-linux-x64"
+    ],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    // "github.copilot.advanced": {
+    //     "debug.overrideEngine": "",
+    //     "debug.overrideModel": "",
+    //     "debug.showScores": true,
+    //     "debug.testOverrideProxyUrl": "http://localhost:8000",
+    //     "debug.overrideProxyUrl": "http://localhost:8000",
+    // }
 }
