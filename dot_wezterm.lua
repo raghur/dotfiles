@@ -2,6 +2,7 @@ local wezterm = require 'wezterm'
 local act = wezterm.action
 -- local gpus = wezterm.gui.enumerate_gpus()
 local config = {
+    hide_tab_bar_if_only_one_tab = true,
     keys = {
         { key = '=', mods = 'META', action = act.IncreaseFontSize },
         { key = '-', mods = 'META', action = act.DecreaseFontSize },
@@ -13,15 +14,19 @@ local config = {
     --see https://github.com/wez/wezterm/issues/484#issue-807875301
     enable_wayland = false,
     font = wezterm.font_with_fallback {
-        'MonaspiceKr Nerd Font',
-        'Iosevka Nerd Font',
+        -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
+        { family = 'Iosevka Fixed Curly', weight = 'ExtraLight'},
+        'Iosevka Nerd Font' ,
+        { family = 'FantasqueSansMono Nerd Font', weight = 'ExtraLight'},
+        { family = 'MonaspiceKr Nerd Font', weight = 'ExtraLight'},
         'FantasqueSansM Nerd Font',
         'DejaVu Sans Mono',
     },
     custom_block_glyphs = true,
     font_size = 15.0,
     line_height = 0.95,
-    cell_width = 1.07,
+    line_height = 1,
+    cell_width = 1.1,
     -- term="xterm-256color",
     harfbuzz_features = {
         "dlig",
@@ -47,14 +52,25 @@ local config = {
     default_cursor_style="BlinkingBlock",
     force_reverse_video_cursor = true,
     font_rules = {
-      {
-        intensity = 'Normal',
-        italic = true,
-        font = wezterm.font {
-          family = 'MonaspiceRn Nerd Font',
-          weight = "ExtraLight",
-        }
-      },
+        {
+            intensity = "Bold",
+            font = wezterm.font(
+                'MonaspiceKr Nerd Font',
+                {
+                    weight = "Thin",
+                    style = "Italic"
+                })
+        },
+        {
+            intensity = "Normal",
+            italic = true,
+            font = wezterm.font(
+                'MonaspiceRn Nerd Font',
+                {
+                    weight = "ExtraLight",
+                    style = "Normal"
+                })
+        },
     },
 }
 -- config.webgpu_preferred_adapter = gpus[2]
