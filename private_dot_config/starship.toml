@@ -1,0 +1,33 @@
+
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[❯](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+[direnv]
+disabled = false
+
+[kubernetes]
+format = 'on [󱃾 $context]($style) '
+disabled = false
+# detect_folders= ['gitops/chart/Chart.yaml']
+
+[[kubernetes.contexts]]
+context_pattern = ".*-sandbox0"
+style = "green"
+context_alias = "Sandbox"
+
+[[kubernetes.contexts]]
+context_pattern = ".*-(?P<cluster>preprod|dev|demo|qa)0"
+style = "bold blue"
+context_alias = "$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = ".*-production0"
+style = "bold red"
+context_alias = "Production"
