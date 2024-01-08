@@ -1,3 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+HEYHOME=~/hey.py
+HEYPY=~/hey.py/hey.py
+HEYCONF=~/.config/hey.conf
+HEYHOST=raghu@austin
 
-ssh -4 austin.lan /usr/bin/hey $*
+if [ -r $HEYCONF ]; then
+	source $HEYHOME/.venv/bin/activate
+	~/hey.py/hey.py $*
+else
+	ssh -4 $HEYHOST /usr/bin/hey $*
+fi
