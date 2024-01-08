@@ -23,7 +23,6 @@ function get_cluster_short() {
             ;;
     esac
 }
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
 source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
@@ -42,7 +41,10 @@ zplug "andrewferrier/fzf-z"
 zplug "raghur/zsh-arduino"
 zplug "~/code/zsh-xclip", from:local
 zplug "srsudar/fzf-complete-flags"
-zplug "jonmosco/kube-ps1", use:"*.sh"
+if command -v kubectl > /dev/null; then
+    zplug "jonmosco/kube-ps1", use:"*.sh"
+    KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+fi
 # zplug "zsh-users/zsh-syntax-highlighting"
 zplug "brookhong/zsh-autosuggestions"
 zplug "zsh-users/zaw", use:"*.plugin.zsh"
