@@ -46,7 +46,9 @@ zplug "jonmosco/kube-ps1", use:"*.sh"
 # zplug "zsh-users/zsh-syntax-highlighting"
 zplug "brookhong/zsh-autosuggestions"
 zplug "zsh-users/zaw", use:"*.plugin.zsh"
-zplug "ellie/atuin", at:'main', use:"*.plugin.zsh"
+if command -v atuin > /dev/null ; then
+	zplug "ellie/atuin", at:'main', use:"*.plugin.zsh"
+fi
 zplug 'junegunn/fzf-git.sh', use:"*.sh"
 if ! zplug check; then
     zplug install
@@ -100,6 +102,7 @@ function gsta() {
 # export FZF_CTRL_R_OPTS=
 bindkey "^[[A" history-beginning-search-backward # after the atuin init
 
+if command -v atuin > /dev/null ; then
 atuin-setup() {
         if ! which atuin &> /dev/null; then return 1; fi
         bindkey '^E' _atuin_search_widget
@@ -139,11 +142,12 @@ atuin-setup() {
         bindkey '^R' fzf-atuin-history-widget
     }
 atuin-setup
-bindkey '^ ' autosuggest-accept
 _zsh_autosuggest_strategy_atuin_top() {
     suggestion=$(atuin search --cmd-only --limit 1 --search-mode prefix $1)
 }
 ZSH_AUTOSUGGEST_STRATEGY=atuin_top
+fi
+bindkey '^ ' autosuggest-accept
 zstyle ':completion:*' menu select
 
 function startwinvm() {
