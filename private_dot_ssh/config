@@ -1,0 +1,22 @@
+Host austin
+    ForwardAgent yes
+Host nigel
+    ForwardAgent yes
+Host basil
+    ForwardAgent yes
+Host htpc
+    user xbmc
+    ForwardAgent yes
+Host github.com
+    user git
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/id_ed25519
+# GitLab.com
+Host gitlab.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab
+
+Host azrnasljmp
+  IdentitiesOnly=yes
+Host bas-kube-eastus2
+  IdentitiesOnly=yes
