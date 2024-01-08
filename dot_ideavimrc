@@ -22,7 +22,7 @@ nmap gcc <Action>(CommentByLineComment)
 vmap gcc <Action>(CommentByLineComment)
 nnoremap <leader>w :w<cr>
 inoremap jk <Esc>
-set clipboard+=ideaput,unnamed
+set clipboard+=ideaput,unnamed,unnamedplus
 "" delete without yanking
 "nnoremap <leader>d "_d
 "vnoremap <leader>d "_d
