@@ -8,9 +8,20 @@ Host htpc
     user xbmc
     ForwardAgent yes
 Host github.com
-    user git
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/id_ed25519
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_rsa
+  IdentityFile ~/.ssh/id_ed25519
+Host ra.github.com
+  HostName github.com
+  User git
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/rockwell
 # GitLab.com
 Host gitlab.com
   PreferredAuthentications publickey
@@ -20,3 +31,7 @@ Host azrnasljmp
   IdentitiesOnly=yes
 Host bas-kube-eastus2
   IdentitiesOnly=yes
+Host *
+	UseKeychain yes
+Match all
+Include ~/.ssh/codespaces
