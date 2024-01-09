@@ -11,7 +11,9 @@ Host github.com
   HostName github.com
   User git
   AddKeysToAgent yes
+{{ if eq .chezmoi.os "darwin" }}
   UseKeychain yes
+{{ end }}
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa
   IdentityFile ~/.ssh/id_ed25519
@@ -19,7 +21,9 @@ Host ra.github.com
   HostName github.com
   User git
   AddKeysToAgent yes
+{{ if eq .chezmoi.os "darwin" }}
   UseKeychain yes
+{{ end }}
   IdentitiesOnly yes
   IdentityFile ~/.ssh/rockwell
 # GitLab.com
@@ -32,6 +36,8 @@ Host azrnasljmp
 Host bas-kube-eastus2
   IdentitiesOnly=yes
 Host *
-	UseKeychain yes
+{{ if eq .chezmoi.os "darwin" }}
+  UseKeychain yes
+{{ end }}
 Match all
 Include ~/.ssh/codespaces
