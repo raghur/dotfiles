@@ -111,7 +111,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # from: https://stackoverflow.com/a/33328293
 AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
-AGKOZAK_CUSTOM_RPROMPT+='|$(kube_ps1)'
 reset-prompt-and-accept-line() {
     zle reset-prompt
         zle accept-line
