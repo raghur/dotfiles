@@ -38,5 +38,5 @@ set clipboard+=ideaput,unnamed,unnamedplus
 "nmap \n <Action>(StepOver)
 "nmap \b <Action>(ToggleLineBreakpoint)
 
-nnoremap \cr :source ~/.ideavimrc<CR>
-nnoremap \ce :e ~/.ideavimrc<CR>
+nnoremap <leader>ir :source ~/.ideavimrc \| :echo "reloaded"<CR>
+nnoremap <leader>ii :e ~/.ideavimrc<CR>
