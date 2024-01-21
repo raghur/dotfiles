@@ -6,6 +6,8 @@ fi
 setopt nullglob
 setopt correct
 unsetopt correctall
+autoload -Uz compinit
+compinit
 eval "$(direnv hook zsh)"
 for f in ~/.zsh.d/*.zsh; do
     source $f
@@ -21,4 +23,6 @@ AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
 bindkey '^ ' autosuggest-accept
 zstyle ':completion:*' menu select
+
+export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/
 eval "$(sheldon source)"

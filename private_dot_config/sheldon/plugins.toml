@@ -20,6 +20,7 @@ shell = "zsh"
 # github = "chriskempson/base16-shell"
 [plugins.spaceship]
 github = "spaceship-prompt/spaceship-prompt"
+profiles = ["spaceship"]
 
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
@@ -39,6 +40,7 @@ use = ["{{ name }}.plugin.zsh"]
 [plugins.agkozak-zsh-prompt]
 github = "agkozak/agkozak-zsh-prompt"
 use = ["{{ name }}.plugin.zsh"]
+profiles= ["agkozak"]
 
 [plugins.zsh-z]
 github =  "agkozak/zsh-z"
@@ -47,3 +49,8 @@ use = ["{{ name }}.plugin.zsh"]
 [plugins.fzf-git]
 github =  "junegunn/fzf-git.sh"
 use = ["*.sh"]
+
+[plugins.ohmyzsh]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins"
+use = ["$ZSH/ohmyzsh.sh", "{common-aliases,tmux,systemd,kubectl,git,npm,pip}/*.plugin.zsh"]
