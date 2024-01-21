@@ -1,4 +1,7 @@
 
+alias cb='app.getclipboard.Clipboard'
+alias cm='chezmoi'
+alias proot='pushd $(git rev-parse --show-toplevel)'
 alias fatdirs="ls -A1d .*/ */ | parallel du -sh {.} | sort -h"
 alias aptup='sudo apt update'
 alias aptug='sudo apt full-upgrade'

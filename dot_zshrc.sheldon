@@ -1,0 +1,24 @@
+
+if  ! command -v sheldon > /dev/null; then
+curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+fi
+setopt nullglob
+setopt correct
+unsetopt correctall
+eval "$(direnv hook zsh)"
+for f in ~/.zsh.d/*.zsh; do
+    source $f
+    # echo $f
+done
+zle -N reset-prompt-and-accept-line
+bindkey '^m' reset-prompt-and-accept-line
+
+export SHELDON_PROFILE=spaceship
+ZSHZ_CASE=smart
+AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
+AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
+AGKOZAK_LEFT_PROMPT_ONLY=1
+bindkey '^ ' autosuggest-accept
+zstyle ':completion:*' menu select
+eval "$(sheldon source)"
