@@ -4,9 +4,9 @@ HEYPY=~/hey.py/hey.py
 HEYCONF=~/.config/hey.conf
 HEYHOST=raghu@austin
 
-if [ -r $HEYCONF ]; then
+if [ -r $HEYCONF ] && [ -e HEYPY ]; then
 	source $HEYHOME/.venv/bin/activate
-	~/hey.py/hey.py $*
+	$HEYPY $*
 else
-	ssh -4 $HEYHOST /usr/bin/hey $*
+	ssh -4 $HEYHOST hey $*
 fi
