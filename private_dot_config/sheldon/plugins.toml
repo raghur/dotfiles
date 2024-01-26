@@ -53,4 +53,4 @@ use = ["*.sh"]
 [plugins.ohmyzsh]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
-use = ["$ZSH/ohmyzsh.sh", "{common-aliases,tmux,systemd,kubectl,git,npm,pip}/*.plugin.zsh"]
+use = ["{common-aliases,tmux,systemd,kubectl,git,npm,pip}/*.plugin.zsh"]

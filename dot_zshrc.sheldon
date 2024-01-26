@@ -1,20 +1,20 @@
 
+export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
 if  ! command -v sheldon > /dev/null; then
 curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 setopt nullglob
 setopt correct
+setopt share_history
 unsetopt correctall
 autoload -Uz compinit
 compinit
 eval "$(direnv hook zsh)"
-for f in ~/.zsh.d/*.zsh; do
-    source $f
-    # echo $f
-done
 zle -N reset-prompt-and-accept-line
 bindkey '^m' reset-prompt-and-accept-line
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 export SHELDON_PROFILE=spaceship
 ZSHZ_CASE=smart
@@ -24,5 +24,13 @@ AGKOZAK_LEFT_PROMPT_ONLY=1
 bindkey '^ ' autosuggest-accept
 zstyle ':completion:*' menu select
 
-export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/
+export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh
+source $ZSH/oh-my-zsh.sh
 eval "$(sheldon source)"
+
+# run these last so they override anything in plugins
+for f in ~/.zsh.d/*.zsh; do
+    source $f
+    # echo $f
+done
+start_tmux
