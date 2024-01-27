@@ -9,6 +9,10 @@ local config = {
         { key = '0', mods = 'META', action = act.ResetFontSize },
         { key = '6', mods = 'META', action = act.ToggleFullScreen },
         { key = '`', mods = 'META', action = act.ShowLauncher },
+        -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+        { key = 'LeftArrow', mods = 'OPT', action = act.SendKey {key = 'b', mods='ALT'} },
+        -- Make Option-Right equivalent to Alt-f; forward-word
+        { key = 'RightArrow', mods = 'OPT', action = act.SendKey {key = 'f', mods = 'ALT'} },
     },
     allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
     --see https://github.com/wez/wezterm/issues/484#issue-807875301
