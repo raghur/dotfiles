@@ -1,7 +1,5 @@
 
-if ! command -v atuin > /dev/null ; then
-    return 
-fi
+command -v atuin > /dev/null || return 
 atuin-setup() {
         if ! which atuin &> /dev/null; then return 1; fi
         bindkey '^E' _atuin_search_widget
