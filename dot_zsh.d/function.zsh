@@ -4,8 +4,8 @@ reset-prompt-and-accept-line() {
     zle accept-line
 }
 
-(alias | grep -q gco)  &&  unalias gco
-(alias | grep -q gsta) &&  unalias gsta
+(alias | grep -q 'gco=')  &&  unalias gco
+(alias | grep -q 'gsta=') &&  unalias gsta
 function start_tmux() {
     if type tmux &> /dev/null && test -z "$TMUX"; then
         if tmux run 2>/dev/null; then
