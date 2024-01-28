@@ -10,7 +10,11 @@ add_newline = true
 success_symbol = '[❯](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
 
 [direnv]
-disabled = false
+disabled = true
+detect_extensions= ['envrc']
+style='bold yellow'
+symbol = '🎨'
+format = '[rc: $symbol $loaded]($style) '
 
 [kubernetes]
 format = 'on [󱃾 $context]($style) '
@@ -36,3 +40,14 @@ context_alias = "$cluster"
 context_pattern = ".*-production0"
 style = "bold red"
 context_alias = "Production"
+
+[custom.direnvp]
+# look for __DOTENV
+#   if not found - read direnv file and strip extension
+#       if that is empty string, then use <NA>
+command= 'echo -n ${__DOTENV:-${${$(readlink $DIRENV_FILE)/.envrc/}:-<NA>}}'
+detect_files = ['.envrc', '.env']
+detect_extensions= ['envrc']
+style='bold yellow'
+symbol = '🎨'
+format = '[$symbol $output]($style) '
