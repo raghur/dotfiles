@@ -10,9 +10,7 @@ setopt nullglob
 setopt correct
 setopt share_history
 unsetopt correctall
-# no need since zsh startup is fixed
-# autoload -Uz compinit
-# compinit
+
 eval "$(direnv hook zsh)"
 zle -N reset-prompt-and-accept-line
 bindkey '^m' reset-prompt-and-accept-line
@@ -36,4 +34,5 @@ for f in ~/.zsh.d/*.zsh; do
     # echo $f
 done
 start_tmux
+eval "$(starship init zsh)"
 # zprof

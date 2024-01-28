@@ -23,7 +23,12 @@ style = "green"
 context_alias = "Sandbox"
 
 [[kubernetes.contexts]]
-context_pattern = ".*-(?P<cluster>preprod|dev|demo|qa)0"
+context_pattern = ".*-LeManDemo.*"
+style = "bold brown"
+context_alias = "$cluster"
+
+[[kubernetes.contexts]]
+context_pattern = ".*-(?P<cluster>preprod|dev|LeManDemo|qa)0"
 style = "bold blue"
 context_alias = "$cluster"
 
