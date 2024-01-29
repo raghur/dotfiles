@@ -47,7 +47,6 @@ local config = {
     color_scheme = "Molokai (Gogh)",
     color_scheme = "terminal.sexy",
     color_scheme = "Molokai",
-    front_end = "WebGpu",
     -- webgpu_power_preference = "HighPerformance",
     -- window_background_opacity = 1.0,
     -- cursor_blink_ease_in ="EaseIn",
