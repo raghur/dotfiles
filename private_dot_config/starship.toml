@@ -45,7 +45,7 @@ context_alias = "Production"
 # look for __DOTENV
 #   if not found - read direnv file and strip extension
 #       if that is empty string, then use <NA>
-command= 'echo -n ${__DOTENV:-${${$(readlink $DIRENV_FILE)/.envrc/}:-<NA>}}'
+command= 'echo -n ${DIRENV_NAME:-${${$(readlink $DIRENV_FILE)/.envrc/}:-<NA>}}'
 detect_files = ['.envrc', '.env']
 detect_extensions= ['envrc']
 style='bold yellow'
