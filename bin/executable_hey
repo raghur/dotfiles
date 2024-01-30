@@ -8,5 +8,6 @@ if [ -r $HEYCONF ] && [ -e $HEYPY ]; then
 	source $HEYHOME/.venv/bin/activate
 	$HEYPY $*
 else
-	ssh -4 $HEYHOST ~/bin/hey $*
+    # do not use ~ etc - that is interpreted as local path
+	ssh -4 $HEYHOST hey $*
 fi
