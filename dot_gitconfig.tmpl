@@ -18,10 +18,13 @@
     commit = yellow bold
     whitespace = red reverse
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+	minus-emph-style = "bold red 52"
+	minus-non-emph-style = "red"
+	minus-style = "red"
+	plus-emph-style = "bold green 22"
+	plus-non-emph-style = "green"
+	plus-style = "green"
+	whitespace-error-style = "reverse red"
 [format]
 	pretty = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 [alias]
@@ -66,10 +69,13 @@
 	permission-reset = "!git diff -p | grep -E \"^(diff|old mode|new mode)\" | sed -e \"s/^old/NEW/;s/^new/old/;s/^NEW/new/\" | git apply"
 	rms = "!f(){ git rm --cached \"$1\";rm -r \"$1\";git config -f .gitmodules --remove-section \"submodule.$1\";git config -f .git/config --remove-section \"submodule.$1\";git add .gitmodules; };"
 	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\"  && git diff --color \"$@\" | diff-so-fancy  | less --tabs=4 -RFX; }; f"
-	lb="branch --sort=-committerdate"
+    fza = "!git ls-files -m -o --exclude-standard | fzf -m --print0 --preview='cat {}' | xargs -0 git add"
+    gone = "!f() { git fetch --all --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D; }; f"
+    root = rev-parse --show-toplevellb="branch --sort=-committerdate"
 [merge]
 	tool = vscode
 	tool = kdiff3
+    conflictstyle = diff3
 [mergetool]
 	keepBackup = false
 [core]
@@ -80,9 +86,42 @@
 	preloadindex = true
 	excludesfile = ~/.gitignore_global
 	symlinks = true
+    pager = delta
 [diff]
 	guitool = kdiff3
 	tool = kdiff3
+    # external = delta
+    colorMoved = default
+[delta]
+	diff-highlight = true
+	keep-plus-minus-markers = true
+    features = diff-highlight decorations unobtrusive-line-numbers
+    navigate = true    # use n and N to move between diff sections
+    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	true-color = always
+	paging = always
+
+[delta "interactive"]
+    keep-plus-minus-markers = true
+
+
+[delta "unobtrusive-line-numbers"]
+    line-numbers = true
+    line-numbers-minus-style = "#444444"
+    line-numbers-zero-style = "#444444"
+    line-numbers-plus-style = "#444444"
+    line-numbers-left-format = "{nm:>4}┊"
+    line-numbers-right-format = "{np:>4}│"
+    line-numbers-left-style = blue
+    line-numbers-right-style = blue
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
 [difftool "kdiff3"]
 	cmd = kdiff3 $LOCAL $REMOTE
 [push]
