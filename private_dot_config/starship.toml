@@ -19,17 +19,13 @@ format = '[rc: $symbol $loaded]($style) '
 [kubernetes]
 format = 'on [󱃾 $context]($style) '
 disabled = false
-# detect_folders= ['gitops/chart/Chart.yaml']
+detect_folders= ['gitops', 'chart']
+detect_files= ['Chart.yaml', 'values.yaml']
 
 [[kubernetes.contexts]]
 context_pattern = ".*-sandbox0"
 style = "green"
 context_alias = "Sandbox"
-
-[[kubernetes.contexts]]
-context_pattern = ".*-LeManDemo.*"
-style = "bold brown"
-context_alias = "$cluster"
 
 [[kubernetes.contexts]]
 context_pattern = ".*-(?P<cluster>preprod|dev|LeManDemo|qa)0"
