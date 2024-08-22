@@ -6,6 +6,7 @@ alias fatdirs="ls -A1d .*/ */ | parallel du -sh {.} | sort -h"
 alias aptup='sudo apt update'
 alias aptug='sudo apt full-upgrade'
 alias myip="curl ifconfig.co"
+alias resetmouse='printf '"'"'\e[?1000l'"'"
 if command -v nvim > /dev/null; then
     alias vim=nvim
     export NVIM_LISTEN_ADDRESS=/var/tmp/nvim.$USER.sock
