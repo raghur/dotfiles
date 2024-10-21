@@ -128,7 +128,7 @@
     "eslint.useESLintClass": true,
     "eslint.lintTask.enable": true,
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.typescript-language-features"
     },
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
@@ -137,6 +137,18 @@
     "karmaTestExplorer.env": {
         "CHROME_BIN": "/usr/bin/chromium"
     },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "github.copilot.editor.enableAutoCompletions": true,
+    "githubPullRequests.pushBranch": "always",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "karmaTestExplorer.allowGlobalPackageFallback": false,
+    "vim.showMarksInGutter": true,
+    "scm.alwaysShowRepositories": true,
     // "github.copilot.advanced": {
     //     "debug.overrideEngine": "",
     //     "debug.overrideModel": "",
