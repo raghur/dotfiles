@@ -1,11 +1,11 @@
 # zmodload zsh/zprof
+export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
 if  ! command -v sheldon > /dev/null; then
 curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
     | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh
 source $ZSH/oh-my-zsh.sh
-export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
 setopt nullglob
 setopt correct
 unsetopt correctall
