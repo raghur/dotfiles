@@ -1,5 +1,13 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
+function make_mouse_binding(dir, streak, button, mods, action)
+  return {
+    event = { [dir] = { streak = streak, button = button } },
+    mods = mods,
+    action = action,
+  }
+end
+
 -- local gpus = wezterm.gui.enumerate_gpus()
 local config = {
     hide_tab_bar_if_only_one_tab = true,
@@ -52,6 +60,7 @@ local config = {
     -- cursor_blink_ease_in ="EaseIn",
     -- cursor_blink_ease_out = "EaseOut",
     -- cursor_blink_rate = 800,
+    unicode_version=14,
     default_cursor_style="BlinkingBlock",
     force_reverse_video_cursor = true,
     font_rules = {
@@ -74,6 +83,14 @@ local config = {
                     style = "Normal"
                 })
         },
+    },
+    mouse_bindings = {
+        make_mouse_binding('Up', 1, 'Left', 'NONE', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+        make_mouse_binding('Up', 1, 'Left', 'SHIFT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+        make_mouse_binding('Up', 1, 'Left', 'ALT', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+        make_mouse_binding('Up', 1, 'Left', 'SHIFT|ALT', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
+        make_mouse_binding('Up', 2, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
+        make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
     },
 }
 -- config.webgpu_preferred_adapter = gpus[2]
