@@ -37,11 +37,16 @@ context_pattern = ".*-production0"
 style = "bold red"
 context_alias = "Production"
 
+[nodejs]
+format = 'via [ $version](bold green) '
+version_format='v${major}'
+
 [custom.direnvp]
 # look for __DOTENV
 #   if not found - read direnv file and strip extension
 #       if that is empty string, then use <NA>
 command= 'echo -n ${DIRENV_NAME:-${${$(readlink $DIRENV_FILE)/.envrc/}:-<NA>}}'
+ignore_timeout = true
 detect_files = ['.envrc', '.env']
 detect_extensions= ['envrc']
 style='bold yellow'
