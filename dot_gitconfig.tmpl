@@ -1,6 +1,6 @@
 [user]
 	name = Raghu Rajagopalan
-	email = raghu.rajagopalan@gmail.com
+	email = raghu.rajagopalan@rockwellautomation.com
 [color]
 	ui = true
 	diff = auto
@@ -131,14 +131,10 @@
 [credential]
 	helper = cache
 [include]
-	path = .gitconfig.{{ .chezmoi.hostname }}
+	path = .gitconfig.RA-T6Y9YQ94CH
 [mergetool "vscode"]
 	cmd=code -n --wait --merge $REMOTE $LOCAL $BASE $MERGED
 [mergetool "kdiff3"]
 	path = /usr/bin/kdiff3
 [rerere]
 	enabled = true
-[pull]
-	rebase = false
-[gpg]
-	format = ssh

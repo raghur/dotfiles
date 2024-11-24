@@ -2,6 +2,19 @@ Host austin
     ForwardAgent yes
 Host nigel
     ForwardAgent yes
+
+Host tmux-drevil
+    user raghu
+    HostName drevil
+    RequestTTY yes
+    RemoteCommand tmux -2u new -A -s 0
+
+Host tmux-austin
+    user raghu
+    HostName austin
+    RequestTTY yes
+    RemoteCommand tmux -2u new -A -s 0
+
 Host basil
     ForwardAgent yes
 Host htpc
