@@ -1,5 +1,6 @@
 # place this after nvm initialization!
 autoload -U add-zsh-hook
+if command -v nvm > /dev/null ; then
 
 load-nvmrc() {
   local nvmrc_path
@@ -22,3 +23,4 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+fi
