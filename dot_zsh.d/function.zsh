@@ -38,3 +38,8 @@ function showdirs() {
     fi
 }
 
+function nvimr() {
+    [ -r /tmp/$USER-server.nvim ] || (echo "server not running"; return)
+    server=$(< /tmp/$USER-server.nvim)
+    nvim --server $server --remote-tab $*
+}
