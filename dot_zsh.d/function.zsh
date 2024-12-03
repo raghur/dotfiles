@@ -39,7 +39,22 @@ function showdirs() {
 }
 
 function nvimr() {
-    [ -r /tmp/$USER-server.nvim ] || (echo "server not running"; return)
+    if [ ! -r /tmp/$USER-server.nvim ]; then 
+        echo "server not running"
+        return 1
+    fi
     server=$(< /tmp/$USER-server.nvim)
-    nvim --server $server --remote-tab $*
+    if [ ! -S $server ]; then 
+        echo "server is dead $server"; 
+        return 2
+    fi
+
+    realpath_array=()
+
+    for arg in "$@"
+    do
+        realpath_array+=("$(realpath "$arg")")
+    done
+    echo ${realpath_array[@]}
+    nvim --server $server --remote ${realpath_array[@]}
 }
