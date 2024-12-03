@@ -38,7 +38,7 @@ function showdirs() {
     fi
 }
 
-function nvimr() {
+function nvr() {
     if [ ! -r /tmp/$USER-server.nvim ]; then 
         echo "server not running"
         return 1
