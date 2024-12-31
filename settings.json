@@ -106,7 +106,7 @@
     "typescript.preferGoToSourceDefinition": true,
     "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
     "yaml.schemas": {
-        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.0.13/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.2.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "workbench.iconTheme": "vscode-icons",
     "hediet.vscode-drawio.resizeImages": null,
@@ -138,7 +138,7 @@
         "CHROME_BIN": "/usr/bin/chromium"
     },
     "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
@@ -149,6 +149,8 @@
     "karmaTestExplorer.allowGlobalPackageFallback": false,
     "vim.showMarksInGutter": true,
     "scm.alwaysShowRepositories": true,
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "workbench.sideBar.location": "right",
     // "github.copilot.advanced": {
     //     "debug.overrideEngine": "",
     //     "debug.overrideModel": "",
