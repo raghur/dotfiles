@@ -1,11 +1,20 @@
 Host austin
     ForwardAgent yes
+
 Host nigel
     ForwardAgent yes
 
+Host basil
+    ForwardAgent yes
+
+Host austin-sync
+    User raghu
+    Hostname austin
+    LocalForward 9394 127.0.0.1:8384
+
 Host tmux-drevil
     user raghu
-    HostName drevil
+    HostName drevil.lan
     RequestTTY yes
     RemoteCommand tmux -2u new -A -s 0
 
@@ -15,28 +24,24 @@ Host tmux-austin
     RequestTTY yes
     RemoteCommand tmux -2u new -A -s 0
 
-Host basil
-    ForwardAgent yes
-Host htpc
-    user xbmc
-    ForwardAgent yes
 Host github.com
   HostName github.com
   User git
   AddKeysToAgent yes
-{{ if eq .chezmoi.os "darwin" }}
+
   UseKeychain yes
-{{ end }}
+
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa
   IdentityFile ~/.ssh/id_ed25519
+
 Host ra.github.com
   HostName github.com
   User git
   AddKeysToAgent yes
-{{ if eq .chezmoi.os "darwin" }}
+
   UseKeychain yes
-{{ end }}
+
   IdentitiesOnly yes
   IdentityFile ~/.ssh/rockwell
 # GitLab.com
@@ -49,8 +54,10 @@ Host azrnasljmp
 Host bas-kube-eastus2
   IdentitiesOnly=yes
 Host *
+
 {{ if eq .chezmoi.os "darwin" }}
-  UseKeychain yes
+    UseKeychain yes
 {{ end }}
+
 Match all
 Include ~/.ssh/codespaces
