@@ -38,8 +38,8 @@ style = "bold red"
 context_alias = "Production"
 
 [nodejs]
-format = 'via [ $version](bold green) '
-version_format='v${major}'
+format = 'via [  $version](bold green) '
+version_format='v${raw}'
 
 [custom.direnvp]
 # look for __DOTENV

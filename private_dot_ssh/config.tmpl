@@ -20,7 +20,7 @@ Host tmux-drevil
 
 Host tmux-austin
     user raghu
-    HostName austin
+    HostName austin.lan
     RequestTTY yes
     RemoteCommand tmux -2u new -A -s 0
 
@@ -55,9 +55,7 @@ Host bas-kube-eastus2
   IdentitiesOnly=yes
 Host *
 
-{{ if eq .chezmoi.os "darwin" }}
-    UseKeychain yes
-{{ end }}
+  UseKeychain yes
 
 Match all
 Include ~/.ssh/codespaces
