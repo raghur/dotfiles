@@ -29,7 +29,9 @@ Host github.com
   User git
   AddKeysToAgent yes
 
-  UseKeychain yes
+{{ if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+{{ end }}
 
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa
@@ -40,7 +42,9 @@ Host ra.github.com
   User git
   AddKeysToAgent yes
 
-  UseKeychain yes
+{{ if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+{{ end }}
 
   IdentitiesOnly yes
   IdentityFile ~/.ssh/rockwell
