@@ -55,7 +55,9 @@ Host bas-kube-eastus2
   IdentitiesOnly=yes
 Host *
 
-  UseKeychain yes
+{{ if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+{{ end }}
 
 Match all
 Include ~/.ssh/codespaces
