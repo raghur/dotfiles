@@ -28,7 +28,6 @@ setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 HIST_STAMPS="yyyy-mm-dd"
 
-eval "$(direnv hook zsh)"
 zle -N reset-prompt-and-accept-line
 bindkey '^m' reset-prompt-and-accept-line
 bindkey "^[[1;5C" forward-word
@@ -44,11 +43,6 @@ bindkey '^ ' autosuggest-accept
 zstyle ':completion:*' menu select
 
 eval "$(sheldon source)"
-
-export NVM_DIR="$HOME/.nvm"
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 # run these last so they override anything in plugins
 for f in ~/.zsh.d/*.zsh; do
     source $f
