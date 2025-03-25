@@ -42,10 +42,7 @@ format = 'via [  $version](bold green) '
 version_format='v${raw}'
 
 [custom.direnvp]
-# look for __DOTENV
-#   if not found - read direnv file and strip extension
-#       if that is empty string, then use <NA>
-command= 'echo -n ${DIRENV_NAME:-${${$(readlink $DIRENV_FILE)/.envrc/}:-<NA>}}'
+command= 'echo -n $(basename ${DIRENV_NAME:-${DIRENV_FILE:-${$(readlink .env):-NA}}} .env)'
 ignore_timeout = true
 detect_files = ['.envrc', '.env']
 detect_extensions= ['envrc']
