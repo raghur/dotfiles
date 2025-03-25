@@ -1,0 +1,9 @@
+[settings]
+experimental = true
+
+[env]
+_.file = ".env"
+
+[[watch_files]]
+patterns = [".env", ".envrc"]
+run = "mise set"
