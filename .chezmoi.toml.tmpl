@@ -1,7 +1,12 @@
-{{- $secrets := promptString "Path to kdbx file"}}
+{{ $kdbxPath := joinPath .chezmoi.homeDir (promptString "Path to kdbx file (from ~)") }}
+{{ if not (stat $kdbxPath) }}
+    {{ warnf "Failed init! Invalid kdbx path '%s'" $kdbxPath  }}
+    {{ exit 1 }}
+{{ end }}
 {{- $isTrusted := promptBool "Trust this machine (Yes will restore private keys)"}}
+
 [data]
-    secretsdb="{{ $secrets }}"
+    secretsdb="{{ $kdbxPath }}"
     trust={{$isTrusted}}
 [keepassxc]
-    database={{ $secrets | quote }}
+    database={{ $kdbxPath | quote }}
