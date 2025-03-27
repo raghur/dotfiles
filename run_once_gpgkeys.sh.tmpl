@@ -1,9 +1,12 @@
-#!/bin/sh
+#!/bin/bash
+
 # secretsDb hash: {{ include .secretsdb | sha256sum }}
-{{ if eq .chezmoi.os "linux" -}}
+
 {{ if not .trust }}
 exit 0
 {{ end }}
+
+{{ if eq .chezmoi.os "linux" -}}
 echo -n '{{ keepassxcAttachment "GpgPersonal"  "private.gpg" }}' > /tmp/private.gpg
 echo -n '{{ keepassxcAttachment "GpgPersonal"  "public.gpg" }}' > /tmp/public.gpg
 echo -n '{{ keepassxcAttachment "GpgPersonal"  "trust.gpg" }}' > /tmp/trust.gpg
