@@ -1,5 +1,7 @@
 {{- $secrets := promptString "Path to kdbx file"}}
+{{- $isTrusted := promptBool "Trust this machine (Yes will restore private keys)"}}
 [data]
     secretsdb="{{ $secrets }}"
+    trust={{$isTrusted}}
 [keepassxc]
     database={{ $secrets | quote }}

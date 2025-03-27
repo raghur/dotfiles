@@ -1,0 +1,6 @@
+{{ if not (stat .) }}
+cat << HERE > {{.}}
+{{ keepassxcAttachment "ssh private keys" (base .) -}}
+HERE
+chmod go-rw {{.}}
+{{ end }}
