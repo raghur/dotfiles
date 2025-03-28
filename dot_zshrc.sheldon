@@ -41,6 +41,9 @@ AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
 bindkey '^ ' autosuggest-accept
 zstyle ':completion:*' menu select
+clear-terminal() { tput reset; zle redisplay; }
+zle -N clear-terminal
+bindkey -e '^l' clear-terminal
 
 eval "$(sheldon source)"
 # run these last so they override anything in plugins

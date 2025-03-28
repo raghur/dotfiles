@@ -23,8 +23,6 @@ shell = "zsh"
 # profiles = ["spaceship"]
 # use = ["{{ name }}.zsh"]
 
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
@@ -43,9 +41,9 @@ github = "agkozak/agkozak-zsh-prompt"
 use = ["{{ name }}.plugin.zsh"]
 profiles= ["agkozak"]
 
-[plugins.zsh-z]
-github =  "agkozak/zsh-z"
-use = ["{{ name }}.plugin.zsh"]
+# [plugins.zsh-z]
+# github =  "agkozak/zsh-z"
+# use = ["{{ name }}.plugin.zsh"]
 
 [plugins.fzf-git]
 github =  "junegunn/fzf-git.sh"
@@ -55,3 +53,6 @@ use = ["*.sh"]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
 use = ["{common-aliases,docker,tmux,systemd,kubectl,git,npm,pip}/*.plugin.zsh"]
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
