@@ -1,3 +1,3 @@
-[ -e /usr/bin/env_parallel.zsh ] || return
-
-source /usr/bin/env_parallel.zsh
+if [ -e /usr/bin/env_parallel.zsh ]; then 
+    source /usr/bin/env_parallel.zsh
+fi 
