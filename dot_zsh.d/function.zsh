@@ -1,5 +1,5 @@
 
-reset-prompt-and-accept-line() {
+function reset-prompt-and-accept-line() {
     zle reset-prompt
     zle accept-line
 }
