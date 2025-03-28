@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# secretsDb hash: {{ include .secretsdb | sha256sum }}
+
+{{ if not .trust }}
+exit 0
+{{ end }}
+
+{{ $eval := false}}
+{{if (stat (joinPath .chezmoi.homeDir ".gnupg/secrets.sha")) }}
+    {{ if not (eq (include (joinPath .chezmoi.homeDir ".gnupg/secrets.sha")) (include .secretsdb | sha256sum)) }}
+        {{ $eval = true}}
+    {{ end}}
+{{ else }}
+    {{ $eval = true}}
+{{ end}}
+
+{{ if $eval }}
+cat << HERE > /tmp/private.gpg 
+{{ keepassxcAttachment "GpgPersonal"  "private.gpg" -}}
+HERE
+cat << HERE > /tmp/public.gpg 
+{{ keepassxcAttachment "GpgPersonal"  "public.gpg" -}}
+HERE
+cat << HERE > /tmp/trust.gpg 
+{{ keepassxcAttachment "GpgPersonal"  "trust.gpg" -}}
+HERE
+gpg --import /tmp/private.gpg
+gpg --import /tmp/public.gpg
+gpg --import-ownertrust /tmp/trust.gpg
+echo -n {{ include .secretsdb | sha256sum }} > {{ joinPath .chezmoi.homeDir ".gnupg/secrets.sha"}}
+{{ end }}
