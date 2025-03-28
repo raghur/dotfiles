@@ -23,6 +23,8 @@ shell = "zsh"
 # profiles = ["spaceship"]
 # use = ["{{ name }}.zsh"]
 
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
@@ -53,6 +55,3 @@ use = ["*.sh"]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
 use = ["{common-aliases,docker,tmux,systemd,kubectl,git,npm,pip}/*.plugin.zsh"]
-
-[plugins.zsh-syntax-highlighting]
-github = "zsh-users/zsh-syntax-highlighting"
