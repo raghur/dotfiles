@@ -1,8 +1,13 @@
-# zmodload zsh/zprof
+PROFILE=0
+# see https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
+[ $PROFILE -eq 1 ] && zmodload zsh/zprof
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
 export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
 if  ! command -v sheldon > /dev/null; then
-curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
-    | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
+    curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+        | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh
 source $ZSH/oh-my-zsh.sh
@@ -28,29 +33,33 @@ setopt HIST_NO_STORE         # Don't store history commands
 setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line being added to the history.
 HIST_STAMPS="yyyy-mm-dd"
 
-zle -N reset-prompt-and-accept-line
-bindkey '^m' reset-prompt-and-accept-line
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-
+# set any config for plugins
 export SHELDON_PROFILE=spaceship
 ZSHZ_CASE=smart
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
-bindkey '^ ' autosuggest-accept
-zstyle ':completion:*' menu select
-clear-terminal() { tput reset; zle redisplay; }
-zle -N clear-terminal
-bindkey -e '^l' clear-terminal
 
+# load plugins
 eval "$(sheldon source)"
+eval "$(starship init zsh)"
+
 # run these last so they override anything in plugins
 for f in ~/.zsh.d/*.zsh; do
-    source $f
-    # echo $f
+     source $f
+     [ $PROFILE -eq 1 ] && echo $f
 done
+
+# now any final overrides
+bindkey '^ ' autosuggest-accept
+zstyle ':completion:*' menu select
+
+bindkey '^g' clear-screen
+zle -N reset-prompt-and-accept-line
+bindkey '^m' reset-prompt-and-accept-line
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 start_tmux
-eval "$(starship init zsh)"
-# zprof
+[ $PROFILE -eq 1 ] && zprof
