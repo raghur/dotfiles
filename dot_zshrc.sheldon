@@ -62,7 +62,8 @@ autoload -Uz ~/.zsh.d/*.zsh(D:t)
 #   - Any file with _ is considered critical - so sourced in .zshrc.
 #   - for other files - even early init like zoxide/mise/etc, the startup is delayed to the zle hook function below
 #       when the enter key is pressed after a command
-
+#       - see reset-prompt-and-accept-line in .zsh.d/_function.zsh for clean up routine
+#
 source $ZSH/oh-my-zsh.sh
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
@@ -70,19 +71,21 @@ eval "$(starship init zsh)"
 
 if [ $uptodate -eq 1 ]; then
     # fast path - when compiled sources exist
+    # only execute the _script.zsh autoloaded functions
     for f in ~/.zsh.d/_*.zsh(D:t); do
         $f
         [ $PROFILE -ge 2 ] && echo "loaded $f"
     done
+    # remaining are loaded in reset-prompt-and-accept-line widget
 else
-    # normal source
+    # slow - source
     {
         # compile in background
         # https://stackoverflow.com/a/28370418
         echo "generating ~/zsh.d/library.$hmac.zwc"
         zcompile ~/.zsh.d/library.$hmac ~/.zsh.d/*.zsh
     } &!
-    # source files
+    # source all .zsh files
     for f in ~/.zsh.d/_*.zsh; do
         source $f
         [ $PROFILE -ge 2 ] && echo "sourced: $f"
