@@ -45,7 +45,7 @@ AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
 
 # calculate hash
-local hmac=$(ls -lTSt ~/.zsh.d/*.zsh|md5)
+local hmac=${$(ls -lSt --full-time ~/.zsh.d/*.zsh|md5sum):/-/}
 local uptodate=0
 if [ -e ~/.zsh.d/library.$hmac.zwc ]; then
     uptodate=1
