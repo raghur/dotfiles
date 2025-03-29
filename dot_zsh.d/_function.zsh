@@ -1,5 +1,26 @@
 
 
+function reset-prompt-and-accept-line() {
+    # load autoloaded func-scripts from ~/.zsh.d
+    # files that do not start with _
+    for f in ~/.zsh.d/[^_]*.zsh(D:t); do
+        $f
+        [ $PROFILE -ge 2 ] && echo $f
+    done
+    # remove older compiled files
+    for f in ~/.zsh.d/library*.zwc(om[2,100]); do 
+        rm -f $f
+    done
+    zle reset-prompt
+    zle accept-line
+
+    # redefine this function so it's a one time thing
+    function reset-prompt-and-accept-line() {
+        zle reset-prompt
+        zle accept-line
+    }
+}
+
 (alias | grep -q 'gco=')  &&  unalias gco
 (alias | grep -q 'gsta=') &&  unalias gsta
 function start_tmux() {
