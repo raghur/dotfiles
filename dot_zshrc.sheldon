@@ -1,6 +1,9 @@
-PROFILE=0
+# PROFILE values:
+# 1 = zprof; 
+# 2 = echo scripts sourced
+local PROFILE=0
 # see https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
-[ $PROFILE -eq 1 ] && zmodload zsh/zprof
+[ $PROFILE -gt 0 ] && zmodload zsh/zprof
 DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
@@ -10,7 +13,7 @@ if  ! command -v sheldon > /dev/null; then
         | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
 export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh
-source $ZSH/oh-my-zsh.sh
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 setopt nullglob
 setopt correct
 unsetopt correctall
@@ -41,15 +44,70 @@ AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
 
-# load plugins
+# calculate hash
+local hmac=$(ls -lTSt *.zsh|shasum|cut -d ' ' -f1)
+local uptodate=0
+if [ -e ~/.zsh.d/library.$hmac.zwc ]; then
+    uptodate=1
+fi
+
+fpath+=(~/.zsh.d/library.$hmac.zwc)
+autoload -Uz ~/.zsh.d/*.zsh(D:t)
+# hack for fash shell
+#
+# ~/.zsh.d/*.zsh 
+#   - All files define functions only - so that return doesn't kill the parent shell
+#   - To disable any file, move it to *.zsh.disabled
+#   - (THIS IS IMPORTANT) touch any .zsh file so that the zwc is compiled on next startup
+#
+#   - Any file with _ is considered critical - so sourced in .zshrc.
+#   - for other files - even early init like zoxide/mise/etc, the startup is delayed to the zle hook function below
+#       when the enter key is pressed after a command
+
+source $ZSH/oh-my-zsh.sh
 eval "$(sheldon source)"
 eval "$(starship init zsh)"
 
-# run these last so they override anything in plugins
-for f in ~/.zsh.d/*.zsh; do
-     source $f
-     [ $PROFILE -eq 1 ] && echo $f
-done
+function reset-prompt-and-accept-line() {
+    # load autoloaded func-scripts from ~/.zsh.d
+    # files that do not start with _
+    for f in ~/.zsh.d/[^_]*.zsh(D:t); do
+        $f
+        [ $PROFILE -ge 2 ] && echo $f
+    done
+    # remove older compiled files
+    for f in ~/.zsh.d/library*.zwc(om[2,100]); do 
+        rm -f $f
+    done
+    zle reset-prompt
+    zle accept-line
+
+    # redefine this function so it's a one time thing
+    function reset-prompt-and-accept-line() {
+        zle reset-prompt
+        zle accept-line
+    }
+}
+
+if [ $uptodate -eq 1 ]; then
+    # fast path - when compiled sources exist
+    for f in ~/.zsh.d/_*.zsh(D:t); do
+        $f
+        [ $PROFILE -ge 2 ] && echo "loaded $f"
+    done
+else
+    # normal source
+    {
+        # https://stackoverflow.com/a/28370418
+        echo "generating ~/zsh.d/library.$hmac.zwc"
+        zcompile ~/.zsh.d/library.$hmac ~/.zsh.d/*.zsh
+    } &!
+    # source files
+    for f in ~/.zsh.d/_*.zsh; do
+        source $f
+        [ $PROFILE -ge 2 ] && echo "sourced: $f"
+    done
+fi
 
 # now any final overrides
 bindkey '^ ' autosuggest-accept
@@ -62,4 +120,4 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 start_tmux
-[ $PROFILE -eq 1 ] && zprof
+[ $PROFILE -gt 0 ] && zprof
