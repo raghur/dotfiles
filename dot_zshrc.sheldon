@@ -105,8 +105,6 @@ zstyle ':completion:*' menu select
 bindkey '^g' clear-screen
 zle -N reset-prompt-and-accept-line
 bindkey '^m' reset-prompt-and-accept-line
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
 
 start_tmux
 [ $PROFILE -gt 0 ] && zprof
