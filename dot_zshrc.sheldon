@@ -4,16 +4,22 @@
 local PROFILE=0
 # see https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
 [ $PROFILE -gt 0 ] && zmodload zsh/zprof
-DISABLE_AUTO_UPDATE="true"
-DISABLE_MAGIC_FUNCTIONS="true"
-DISABLE_COMPFIX="true"
 export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
 if  ! command -v sheldon > /dev/null; then
     curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
         | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
 fi
+
+# ohmyzsh settings
+ZSH_DISABLE_MAGIC_FUNCTIONS="true"
+ZSH_DISABLE_COMPFIX="true"
 export ZSH=~/.local/share/sheldon/repos/github.com/ohmyzsh/ohmyzsh
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
+if [[ -z "$ZSH_CACHE_DIR" ]]; then
+  ZSH_CACHE_DIR="$ZSH/cache"
+fi
+export ZSH_COMPDUMP=$ZSH_CACHE_DIR/.zcompdump-$HOST
+# remember to also list these in ~/.config/sheldon/plugins.toml
+plugins=(common-aliases docker tmux systemd kubectl git npm pip)
 setopt nullglob
 setopt correct
 unsetopt correctall
@@ -37,37 +43,37 @@ setopt HIST_REDUCE_BLANKS    # Remove superfluous blanks from each command line 
 HIST_STAMPS="yyyy-mm-dd"
 
 # set any config for plugins
-export SHELDON_PROFILE=spaceship
-ZSHZ_CASE=smart
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 AGKOZAK_CUSTOM_RPROMPT='[%D{%L:%M:%S %p}]'
 AGKOZAK_LEFT_PROMPT_ONLY=1
 
-# calculate hash
+# calculate hash for ~/.zsh.d, add to fpath and autoload
 local hmac=${$(ls -lSt --full-time ~/.zsh.d/*.zsh|md5sum):/-/}
+fpath+=(~/.zsh.d/library.$hmac.zwc)
+# see zsh glob qualifiers - https://thevaluable.dev/zsh-expansion-guide-example/
+autoload -Uz ~/.zsh.d/*.zsh(D:t)
+
 local uptodate=0
 if [ -e ~/.zsh.d/library.$hmac.zwc ]; then
     uptodate=1
 fi
 
-fpath+=(~/.zsh.d/library.$hmac.zwc)
-autoload -Uz ~/.zsh.d/*.zsh(D:t)
-# hack for fash shell
-#
+
+# hack for fast shell startup
+# ============================
 # ~/.zsh.d/*.zsh 
 #   - All files define functions only - so that return doesn't kill the parent shell
 #   - To disable any file, move it to *.zsh.disabled
 #
-#   - Any file with _ is considered critical - so sourced in .zshrc.
-#   - for other files - even early init like zoxide/mise/etc, the startup is delayed to the zle hook function below
+#   - File _*.zsh are sourced synchronously
+#   - Other *.zsh - even early init like zoxide/mise/etc, the startup is delayed to the zle hook function below
 #       when the enter key is pressed after a command
 #       - see reset-prompt-and-accept-line in .zsh.d/_function.zsh for clean up routine
 #
+#
 source $ZSH/oh-my-zsh.sh
 eval "$(sheldon source)"
-eval "$(starship init zsh)"
-
 
 if [ $uptodate -eq 1 ]; then
     # fast path - when compiled sources exist
