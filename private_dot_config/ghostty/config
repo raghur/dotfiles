@@ -1,0 +1,51 @@
+# ghostty +show-config --default --docs
+# ghostty +list-themes
+
+# Font
+
+window-title-font-family       = Iosevka Custom
+font-family                    = Iosevka Nerd Font Mono
+
+font-thicken                   = false
+font-size                      = 14
+window-inherit-font-size       = true
+
+# Look and Feel
+adjust-cursor-thickness        = 3
+adjust-underline-position      = 3
+bold-is-bright                 = true
+link-url                       = true
+macos-titlebar-proxy-icon      = hidden
+macos-titlebar-style           = tabs
+mouse-hide-while-typing        = true
+theme                          = tokyonight_night
+window-vsync                   = true
+
+font-codepoint-map = U+E000-U+E00A,U+E0A0-U+E0A3,U+E0B0-U+E0C8,U+E0CA,U+E0CC-U+E0D7,U+E200-U+E2A9,U+E300-U+E3E3,U+E5FA-U+E6B7,U+E700-U+E8EF,U+EA60-U+EC1E,U+ED00-U+F2FF,U+EE00-U+EE0B,U+F300-U+F381,U+F400-U+F533,U+F0001-U+F1AF0=Symbols Nerd Font
+
+
+# Other
+clipboard-paste-protection     = true
+clipboard-trim-trailing-spaces = true
+copy-on-select                 = true
+macos-auto-secure-input        = true
+macos-secure-input-indication  = true
+quit-after-last-window-closed  = false
+scrollback-limit               = 4200
+shell-integration              = fish
+shell-integration-features     = no-cursor,sudo,title
+macos-option-as-alt = true
+
+# Key bindings
+keybind                        = ctrl+h=goto_split:left
+keybind                        = ctrl+j=goto_split:bottom
+keybind                        = ctrl+k=goto_split:top
+keybind                        = ctrl+l=goto_split:right
+keybind                        = ctrl+shift+h=new_split:left
+keybind                        = ctrl+shift+j=new_split:down
+keybind                        = ctrl+shift+k=new_split:up
+keybind                        = ctrl+shift+l=new_split:right
+keybind                        = super+shift+enter=new_split:auto
+keybind                        = super+shift+i=inspector:toggle
+keybind                        = super+shift+r=reload_config
+keybind                        = super+t=new_tab
