@@ -1,6 +1,7 @@
 {{ if eq .chezmoi.os "linux" -}}
 #!/bin/sh
-pamac install zoxide fzf ripgrep syncthing borg btop mise jq kdiff3 keepassxc miller ncdu
+command -v pamac > /dev/null && pamac install zoxide fzf ripgrep syncthing borg btop mise jq kdiff3 keepassxc miller ncdu
+command -v apt > /dev/null && sudo apt install zoxide fzf ripgrep syncthing btop jq keepassxc miller ncdu
 {{ else if eq .chezmoi.os "darwin" -}}
 #!/bin/sh
 brew install zoxide ripgrep fzf syncthing btop mise jq keepassxc

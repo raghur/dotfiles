@@ -1,5 +1,8 @@
 # shellcheck shell=bash
 
+function zoxide_setup() {
+	command -v zoxide > /dev/null || return
+
 # =============================================================================
 #
 # Utility functions for zoxide.
@@ -147,3 +150,5 @@ fi
 # To initialize zoxide, add this to your shell configuration file (usually ~/.zshrc):
 #
 # eval "$(zoxide init zsh)"
+}
+zoxide_setup
