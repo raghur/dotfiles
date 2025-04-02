@@ -1,0 +1,5 @@
+[Path]
+PathModified=/data/common/ebooks/metadata.db
+
+[Install]
+WantedBy=multi-user.target
