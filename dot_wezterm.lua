@@ -27,11 +27,9 @@ local config = {
     enable_wayland = false,
     font = wezterm.font_with_fallback {
         -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
-        { family = 'Iosevka Nerd Font', weight = 'Light'} ,
-        { family = 'Iosevka Fixed Curly', weight = 'ExtraLight'},
-        { family = 'FantasqueSansMono Nerd Font', weight = 'ExtraLight'},
-        { family = 'MonaspiceKr Nerd Font', weight = 'ExtraLight'},
-        'FantasqueSansM Nerd Font',
+        { family = 'IosevkaTerm Nerd Font', weight = "Light"} ,
+        { family = 'FantasqueSansM Nerd Font', weight='Light'},
+        { family = 'MonaspiceKr Nerd Font', weight = 'Light'},
         'DejaVu Sans Mono',
     },
     custom_block_glyphs = true,

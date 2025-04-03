@@ -3,10 +3,12 @@
 
 # Font
 
-window-title-font-family       = Iosevka Custom
-font-family                    = Iosevka Nerd Font Mono
-
-font-thicken                   = false
+# window-title-font-family       = "MonaspiceKr NFM"
+# font-family - first font found on the system is used - 
+# later entries do not override
+font-family                    = "IosevkaTerm NFM Light"
+font-family                    = "MonaspiceKr NFM Light"
+font-thicken                   = true
 font-size                      = 14
 window-inherit-font-size       = true
 
