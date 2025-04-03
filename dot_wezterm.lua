@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
-function make_mouse_binding(dir, streak, button, mods, action)
+local function make_mouse_binding(dir, streak, button, mods, action)
   return {
     event = { [dir] = { streak = streak, button = button } },
     mods = mods,
