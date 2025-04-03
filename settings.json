@@ -42,23 +42,19 @@
             "before": [ "<leader>", "r", ],
             "commands": [ "editor.action.rename" ]
         },
+        // g mappings
         {
-            "before": [ "<leader>", "t", ],
+            "before": [ "g", "t", ],
             "commands": [ "workbench.action.showAllSymbols" ]
         },
         {
-            "before": [ "<leader>", "p", ],
-            "commands": [ "editor.action.marker.next" ]
-        },
-        {
-            "before": [ "<leader>", "]", ],
+            "before": [ "g", "]", ],
             "commands": [ "editor.action.marker.nextInFiles" ]
         },
         {
-            "before": [ "<leader>", "[", ],
+            "before": [ "g", "[", ],
             "commands": [ "editor.action.marker.previousInFiles" ]
         },
-        // g mappings
         {
             "before": [ "g", "d", ],
             "commands": [ "editor.action.revealDefinition" ]
@@ -80,12 +76,12 @@
             "commands": [ "workbench.action.compareEditor.openSide" ],
         },
         {
-            "key": "ctrl+o",
-            "command": "workbench.action.navigateBack"
+            "before": [ "ctrl", "o", ],
+            "commands": "workbench.action.navigateBack"
         },
         {
-            "key": "ctrl+i",
-            "command": "workbench.action.navigateForward"
+            "before": [ "ctrl", "i", ],
+            "commands": "workbench.action.navigateForward"
         },
     ],
     "vim.leader": "<space>",
