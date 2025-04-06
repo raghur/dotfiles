@@ -1,7 +1,0 @@
-[Unit]
-Description=calibre sync db
-After=network.target
-
-[Service]
-Type=oneshot
-ExecStart=sh -c "/usr/bin/rsync -avrzP --del /data/common/ebooks/ raghu@drevil:~/calibre/library"

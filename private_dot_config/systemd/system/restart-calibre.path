@@ -1,7 +1,0 @@
-[Unit]
-Description=monitor calibre db
-[Path]
-PathModified=/home/raghu/calibre/library/metadata.db
-
-[Install]
-WantedBy=multi-user.target
