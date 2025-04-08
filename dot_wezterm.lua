@@ -11,6 +11,16 @@ end
 -- local gpus = wezterm.gui.enumerate_gpus()
 local config = {
     hide_tab_bar_if_only_one_tab = true,
+    audible_bell="Disabled",
+    visual_bell = {
+        fade_in_function = 'EaseIn',
+        fade_in_duration_ms = 150,
+        fade_out_function = 'EaseOut',
+        fade_out_duration_ms = 150,
+    },
+    colors = {
+        visual_bell = '#202020',
+    },
     keys = {
         { key = '=', mods = 'META', action = act.IncreaseFontSize },
         { key = '-', mods = 'META', action = act.DecreaseFontSize },
