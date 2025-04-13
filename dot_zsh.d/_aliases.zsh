@@ -10,7 +10,6 @@ alias resetmouse='printf '"'"'\e[?1000l'"'"
 alias jctl='journalctl -o short-iso --no-hostname'
 if command -v nvim > /dev/null; then
     alias vim=nvim
-    export NVIM_LISTEN_ADDRESS=/var/tmp/nvim.$USER.sock
     function nvr_xdo() {
         nvr $*
         if [ `pgrep neovide` ]; then
