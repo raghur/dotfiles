@@ -37,7 +37,8 @@ local config = {
     enable_wayland = false,
     font = wezterm.font_with_fallback {
         -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
-        { family = 'IosevkaTerm Nerd Font', weight = "Light"} ,
+        { family = 'IosevkaTerm Nerd Font', weight = "ExtraLight"} ,
+        { family = 'FiraCode Nerd Font' } ,
         { family = 'FantasqueSansM Nerd Font', weight='Light'},
         { family = 'MonaspiceKr Nerd Font', weight = 'Light'},
         'DejaVu Sans Mono',
@@ -73,24 +74,22 @@ local config = {
     force_reverse_video_cursor = true,
     font_rules = {
         {
-            intensity = "Bold",
-            font = wezterm.font(
-                'MonaspiceKr Nerd Font',
+            italic = true,
+            font = wezterm.font('MonaspiceRn Nerd Font',
                 {
-                    weight = "Thin",
+                    weight = "ExtraLight",
                     style = "Italic"
                 })
         },
-        {
-            intensity = "Normal",
-            italic = true,
-            font = wezterm.font(
-                'MonaspiceRn Nerd Font',
-                {
-                    weight = "ExtraLight",
-                    style = "Normal"
-                })
-        },
+        -- {
+        --     intensity = "Half",
+        --     font = wezterm.font(
+        --         'MonaspiceRn Nerd Font',
+        --         {
+        --             weight = "Bold",
+        --             style = "Italic"
+        --         })
+        -- },
     },
     mouse_bindings = {
         make_mouse_binding('Up', 1, 'Left', 'NONE', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
