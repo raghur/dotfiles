@@ -4,7 +4,7 @@
 local PROFILE=0
 # see https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
 [ $PROFILE -gt 0 ] && zmodload zsh/zprof
-export PATH="$PATH:/home/$USER/bin:/home/$USER/.local/bin"
+export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
 if  ! command -v sheldon > /dev/null; then
     curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
         | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin
