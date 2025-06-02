@@ -106,7 +106,7 @@
     "typescript.preferGoToSourceDefinition": true,
     "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
     "yaml.schemas": {
-        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.4.24/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.8.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "workbench.iconTheme": "vscode-icons",
     "hediet.vscode-drawio.resizeImages": null,
@@ -143,19 +143,19 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "github.copilot.editor.enableAutoCompletions": true,
     "githubPullRequests.pushBranch": "always",
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "karmaTestExplorer.allowGlobalPackageFallback": false,
     "vim.showMarksInGutter": true,
     "scm.alwaysShowRepositories": true,
     "C_Cpp.intelliSenseEngine": "disabled",
-    "workbench.sideBar.location": "right",
     "workbench.colorTheme": "Default Light+",
     "windowColors.repoConfigurationList": [
         "Rockwell-Automation-Inc/LeMans-Common-Admin: #5cb514",
         "Rockwell-Automation-Inc/LeMans-Home-UI: #043759"
     ],
+    "comments.thread.confirmOnCollapse": "never",
+    "workbench.sideBar.location": "right",
     // "github.copilot.advanced": {
     //     "debug.overrideEngine": "",
     //     "debug.overrideModel": "",
