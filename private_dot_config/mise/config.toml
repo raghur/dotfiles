@@ -11,3 +11,4 @@ run = "mise set"
 
 [tools]
 dotnet = "latest"
+usage = "latest"

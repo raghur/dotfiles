@@ -1,4 +1,5 @@
 
+# unalias fd
 alias cb='app.getclipboard.Clipboard'
 alias cm='chezmoi'
 alias proot='pushd $(git rev-parse --show-toplevel)'
