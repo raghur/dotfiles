@@ -106,7 +106,7 @@
     "typescript.preferGoToSourceDefinition": true,
     "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": false,
     "yaml.schemas": {
-        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+        "file:///home/raghu/.vscode/extensions/atlassian.atlascode-3.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
     },
     "workbench.iconTheme": "vscode-icons",
     "hediet.vscode-drawio.resizeImages": null,
