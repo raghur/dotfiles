@@ -1,7 +1,27 @@
 #!/bin/bash
+
 source ~/.local/cf-ddns.secrets
 ipv6=$(ip -6 a |grep inet6|grep -i global| grep -Pio '2[0-9a-f:]+'| head -n1)
 existingName=${1:-home}
+if [ "$existingName" == "--help" ]; then
+    cat <<EOF
+Cloudflare DDNS update script
+
+SYNTAX: cf-ddns.sh existing new
+Looks for record with name=existing.rraghur.in and updates the content to current ipv6.
+
+OPTIONS:
+    existing - existing DNS subdomain name - defaults to home;
+    new      - new name; optional
+
+On success, points either \$existing.rraghur.in or \$new.rraghur.in to the current ipv6
+
+LOGGING:
+Writes to system log with tag = CFDDNS; Can be queried with journalctl with journalctl -ft CFDDNS
+
+EOF
+    exit 0;
+fi
 newName=${2:-$existingName}
 existingDnsName="$existingName.rraghur.in"
 dnsName="$newName.rraghur.in"
