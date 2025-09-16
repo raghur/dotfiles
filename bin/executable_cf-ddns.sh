@@ -1,8 +1,9 @@
 #!/bin/bash
 
-source ~/.local/cf-ddns.secrets
+set -euo pipefail
+source ~/.local/cf-ddns.secrets || echo "Failed to find secrets"
 ipv6=$(ip -6 a |grep inet6|grep -i global| grep -Pio '2[0-9a-f:]+'| head -n1)
-existingName=${1:-home}
+existingName=${1:-$(hostname)}
 if [ "$existingName" == "--help" ]; then
     cat <<EOF
 Cloudflare DDNS update script
