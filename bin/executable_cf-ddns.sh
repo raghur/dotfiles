@@ -82,7 +82,7 @@ function updateAAAA() {
 {"type":"AAAA","name":"$newName","content":"$ipv6","ttl":1,"priority":10,"proxied":false}
 EOF
 )
-    read CF_RECID currentIpAddr <<< $(curl -s "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/dns_records?name=$existingDnsName" \
+    read CF_RECID currentIpAddr <<< $(curl -s "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/dns_records?name=$existingDnsName&type=AAAA" \
         -H "Authorization: Bearer $CF_KEY" \
         -H "Content-Type: application/json" | jq -r '.result[0] | [.id,.content]|@tsv')
     # logger -t CFDDNS "CF: $current; Machine: $ipv6"
@@ -90,6 +90,7 @@ EOF
         echo "Failed to locate existing DNS record with name=$existingDnsName"
         exit 2;
     fi
+    # logger -t CFDDNS "$CF_RECID $currentIpAddr"
 
     if [[ x$currentIpAddr != x$ipv6 || x$existingName != x$newName ]]; then
         res=$(curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/dns_records/$CF_RECID" \
