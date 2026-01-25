@@ -1,6 +1,6 @@
 [settings]
 experimental = true
-idiomatic_version_file_enable_tools = ["node"]
+idiomatic_version_file_enable_tools = ["node", "dotnet", "python"]
 
 [env]
 _.file = ".env"
@@ -10,5 +10,4 @@ patterns = [".env", ".envrc"]
 run = "mise set"
 
 [tools]
-dotnet = "latest"
 usage = "latest"
