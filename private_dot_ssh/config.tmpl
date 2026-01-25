@@ -24,30 +24,38 @@ Host tmux-austin
     RequestTTY yes
     RemoteCommand tmux -2u new -A -s 0
 
-Host github.com
+Host raemu-github.com
   HostName github.com
   User git
   AddKeysToAgent yes
-
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/id_ghemu_ed25519
 {{ if eq .chezmoi.os "darwin" }}
     UseKeychain yes
 {{ end }}
 
+Host github.com
+  HostName github.com
+  User git
+  AddKeysToAgent yes
   IdentitiesOnly yes
   IdentityFile ~/.ssh/id_rsa
   IdentityFile ~/.ssh/id_ed25519
+{{ if eq .chezmoi.os "darwin" }}
+    UseKeychain yes
+{{ end }}
 
 Host ra.github.com
   HostName github.com
   User git
   AddKeysToAgent yes
-
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/rockwell
 {{ if eq .chezmoi.os "darwin" }}
     UseKeychain yes
 {{ end }}
 
-  IdentitiesOnly yes
-  IdentityFile ~/.ssh/rockwell
+
 # GitLab.com
 Host gitlab.com
   PreferredAuthentications publickey
@@ -55,10 +63,11 @@ Host gitlab.com
 
 Host azrnasljmp
   IdentitiesOnly=yes
+
 Host bas-kube-eastus2
   IdentitiesOnly=yes
-Host *
 
+Host *
 {{ if eq .chezmoi.os "darwin" }}
     UseKeychain yes
 {{ end }}

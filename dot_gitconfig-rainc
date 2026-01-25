@@ -1,0 +1,12 @@
+[user]
+name = "Raghu Rajagopalan"
+email = "raghu.rajagopalan@rockwellautomation.com"
+signingkey = /Users/raghu.rajagopalan/.ssh/rockwell.pub
+
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+
+[url "git@ra.github.com"]
+  insteadOf = git@github.com

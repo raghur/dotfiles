@@ -139,3 +139,7 @@
 	path = /usr/bin/kdiff3
 [rerere]
 	enabled = true
+[includeif "hasconfig:remote.*.url:git@github.com:ra-fthub/**"]
+	path = ~/.gitconfig-raemu
+[includeif "hasconfig:remote.*.url:git@github.com:Rockwell-Automation-Inc/**"]
+	path = ~/.gitconfig-rainc
