@@ -13,8 +13,8 @@ docker exec --env-file /opt/stacks/immich/.env immich_postgres pg_dumpall --clea
 
 ### Append to local Borg repository
 borg create "$BORG_REPO::{now}" "$UPLOAD_LOCATION" --exclude "$UPLOAD_LOCATION"/thumbs/ --exclude "$UPLOAD_LOCATION"/encoded-video/ --exclude "$UPLOAD_LOCATION"/backups
-borg list "$BORG_REPO"
-borg prune --keep-weekly=4 --keep-monthly=3 "$BORG_REPO"
+borg prune --keep-daily=7 --keep-weekly=4 --keep-monthly=3 "$BORG_REPO"
 borg compact "$BORG_REPO"
+borg list "$BORG_REPO"
 
 rclone sync -v $BORG_REPO immich-az:immich/
