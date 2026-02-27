@@ -1,4 +1,6 @@
 local wezterm = require 'wezterm'
+local log_debug = wezterm.log_info
+local log_info = wezterm.log_info
 local act = wezterm.action
 local function make_mouse_binding(dir, streak, button, mods, action)
   return {
@@ -7,6 +9,34 @@ local function make_mouse_binding(dir, streak, button, mods, action)
     action = action,
   }
 end
+
+wezterm.on('format-tab-title', function(tab)
+    -- Get the current working directory as a URI
+    local cwd_uri = tab.active_pane.current_working_dir
+    -- Convert the URI to a path string and extract just the basename (folder name)
+    log_info("cwd_uri".. cwd_uri)
+    local cwd_path = wezterm.url.parse(cwd_uri).path
+    local folder_name = wezterm.basename(cwd_path)
+
+    -- Get the default title set by the shell/application
+    local title = tab.active_pane.title
+    if cwd_uri == nil then
+        if title and title ~= "" then
+            return title
+        end
+        -- Fallback if neither CWD nor title is available
+        return "[Initializing...]"
+    end
+
+    -- If the title is empty or the same as the folder name, just return the folder name
+    if title == folder_name or title == "" then
+        return folder_name
+    end
+
+    -- Otherwise, return both (e.g., "folder_name: title")
+    return title .. ": " .. folder_name
+end)
+
 
 -- local gpus = wezterm.gui.enumerate_gpus()
 local config = {
@@ -35,6 +65,7 @@ local config = {
     allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
     --see https://github.com/wez/wezterm/issues/484#issue-807875301
     enable_wayland = false,
+    front_end = "WebGpu",
     font = wezterm.font_with_fallback {
         -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
         { family = 'IosevkaTerm Nerd Font', weight = "ExtraLight"} ,
@@ -100,5 +131,23 @@ local config = {
         make_mouse_binding('Up', 3, 'Left', 'NONE', wezterm.action.CompleteSelection 'ClipboardAndPrimarySelection'),
     },
 }
+local defaultCS = config.color_scheme;
 -- config.webgpu_preferred_adapter = gpus[2]
+--
+wezterm.on('toggle-tui-theme', function(window, pane)
+  local overrides = window:get_config_overrides() or {}
+  if overrides.color_scheme == nil or overrides.color_scheme == defaultCS then
+    overrides.color_scheme = 'Cobalt 2 (Gogh)'
+  else
+    overrides.color_scheme = defaultCS
+  end
+  window:set_config_overrides(overrides)
+end)
+
+table.insert(config.keys,
+  {
+    key = 't',
+    mods = 'META',
+    action = wezterm.action.EmitEvent 'toggle-tui-theme',
+  })
 return config

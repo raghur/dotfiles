@@ -2,9 +2,10 @@
 # 1 = zprof; 
 # 2 = echo scripts sourced
 local PROFILE=0
+export LC_CTYPE=en_US.UTF-8
 # see https://blog.mattclemente.com/2020/06/26/oh-my-zsh-slow-to-load/
 [ $PROFILE -gt 0 ] && zmodload zsh/zprof
-export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
+export PATH="/opt/homebrew/opt/sqlite/bin:$PATH:$HOME/bin:$HOME/.local/bin"
 if  ! command -v sheldon > /dev/null; then
     curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
         | bash -s -- --repo rossmacarthur/sheldon --to ~/.local/bin

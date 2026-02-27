@@ -53,3 +53,8 @@ detect_extensions= ['envrc']
 style='bold yellow'
 symbol = '🎨'
 format = '[$symbol $output]($style) '
+
+[custom.jj]
+when = "jj-starship detect"
+shell = ["jj-starship"]
+format = "$output "
