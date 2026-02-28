@@ -8,5 +8,5 @@ signingkey = /Users/raghu.rajagopalan/.ssh/id_ghemu_ed25519.pub
 [commit]
 	gpgsign = true
 
-[url "git@raemu-github.com"]
+[url "git@raemu.github.com"]
   insteadOf = git@github.com

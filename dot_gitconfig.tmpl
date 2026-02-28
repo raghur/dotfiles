@@ -1,6 +1,6 @@
 [user]
 	name = Raghu Rajagopalan
-	email = raghu.rajagopalan@rockwellautomation.com
+	email = raghu.rajagopalan@gmail.com
 [color]
 	ui = true
 	diff = auto
@@ -139,7 +139,8 @@
 	path = /usr/bin/kdiff3
 [rerere]
 	enabled = true
-[includeif "hasconfig:remote.*.url:git@github.com:ra-fthub/**"]
-	path = ~/.gitconfig-raemu
-[includeif "hasconfig:remote.*.url:git@github.com:Rockwell-Automation-Inc/**"]
-	path = ~/.gitconfig-rainc
+
+[includeIf "hasconfig:remote.*.url:git@github.com:Rockwell-Automation-Inc/**"]
+    path= ~/.gitconfig-rainc
+[includeIf "hasconfig:remote.*.url:git@github.com:ra-fthub/**"]
+    path= ~/.gitconfig-raemu
