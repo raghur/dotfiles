@@ -68,10 +68,10 @@ local config = {
     front_end = "WebGpu",
     font = wezterm.font_with_fallback {
         -- https://wezfurlong.org/wezterm/config/lua/wezterm/font.html
-        { family = 'IosevkaTerm Nerd Font', weight = "ExtraLight"} ,
+        { family = 'IosevkaTerm Nerd Font', weight = "Light", } ,
+        { family = 'MonaspiceKr Nerd Font'},
         { family = 'FiraCode Nerd Font' } ,
         { family = 'FantasqueSansM Nerd Font', weight='Light'},
-        { family = 'MonaspiceKr Nerd Font', weight = 'Light'},
         'DejaVu Sans Mono',
     },
     custom_block_glyphs = true,
@@ -109,18 +109,9 @@ local config = {
             font = wezterm.font('MonaspiceRn Nerd Font',
                 {
                     weight = "ExtraLight",
-                    style = "Italic"
+                    style = "Italic",
                 })
         },
-        -- {
-        --     intensity = "Half",
-        --     font = wezterm.font(
-        --         'MonaspiceRn Nerd Font',
-        --         {
-        --             weight = "Bold",
-        --             style = "Italic"
-        --         })
-        -- },
     },
     mouse_bindings = {
         make_mouse_binding('Up', 1, 'Left', 'NONE', wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection'),
