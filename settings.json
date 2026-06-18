@@ -220,7 +220,7 @@
     "vim.showMarksInGutter": true,
     "scm.alwaysShowRepositories": true,
     "C_Cpp.intelliSenseEngine": "disabled",
-    "workbench.colorTheme": "Default Light+",
+    "workbench.colorTheme": "Light+",
     "windowColors.repoConfigurationList": [
         "Rockwell-Automation-Inc/LeMans-Common-Admin: #5cb514",
         "Rockwell-Automation-Inc/LeMans-Home-UI: #043759"
@@ -242,4 +242,7 @@
     ],
     "chat.mcp.gallery.enabled": true,
     "dart.mcpServer": false,
+    "jestrunner.vitestConfigPath": "angular-app/vite.config.mts",
+    "chat.viewSessions.orientation": "stacked",
+    "githubPullRequests.pullBranch": "never",
 }
