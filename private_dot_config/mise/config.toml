@@ -10,4 +10,4 @@ patterns = [".env", ".envrc"]
 run = "mise set"
 
 [tools]
-usage = "latest"
+rust = "latest"
