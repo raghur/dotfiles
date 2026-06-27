@@ -15,9 +15,27 @@ min_time = 5000
 show_notifications = false
 
 [mise]
-disabled = false
+disabled = true
 symbol = '👨‍🍳 '
 healthy_symbol = 'active'
+
+
+[custom.mise_env]
+command = "f=\"$MISE_CONFIG_ROOT/.miserc.toml\"; [ -f \"$f\" ] && sed -n 's/env = \\[\"\\(.*\\)\"\\]/\\1/p' \"$f\" 2>/dev/null || echo '—'"
+when = "test -n \"$MISE_CONFIG_ROOT\" && case \"$PWD\" in \"$MISE_CONFIG_ROOT\"*) true;; *) false;; esac"
+symbol = "👨‍🍳 "
+style = "bold yellow"
+format = "[$symbol($output)]($style) "
+
+# mise env with dotenv symlink file - legacy
+[custom.mise_symlink]
+command= 'echo -n $(basename ${DIRENV_NAME:-${DIRENV_FILE:-${$(readlink .env):-NA}}} .env)'
+ignore_timeout = true
+detect_files = ['.envrc', '.env']
+detect_extensions= ['envrc']
+style='bold yellow'
+symbol = '🎨'
+format = '[$symbol $output]($style) '
 
 [dotnet]
 symbol =' ' 
@@ -52,15 +70,6 @@ context_alias = "Production"
 format = '[$symbol $version](bold green) '
 symbol = '󰎙'
 version_format='v${raw}'
-
-[custom.direnvp]
-command= 'echo -n $(basename ${DIRENV_NAME:-${DIRENV_FILE:-${$(readlink .env):-NA}}} .env)'
-ignore_timeout = true
-detect_files = ['.envrc', '.env']
-detect_extensions= ['envrc']
-style='bold yellow'
-symbol = '🎨'
-format = '[$symbol $output]($style) '
 
 [custom.jj]
 when = "jj-starship detect"
