@@ -1,5 +1,5 @@
 
-function _mise() {
+function _zshrc_mise_setup() {
 
 mise() {
   local command
@@ -58,4 +58,4 @@ if [ -z "${_mise_cmd_not_found:-}" ]; then
     }
 fi
 }
-_mise
+_zshrc_mise_setup
