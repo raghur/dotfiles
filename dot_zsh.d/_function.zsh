@@ -56,22 +56,16 @@ function showdirs() {
 }
 
 function nvr() {
-    if [ ! -r /tmp/$USER-server.nvim ]; then 
-        echo "server not running"
-        return 1
-    fi
-    server=$(< /tmp/$USER-server.nvim)
-    if [ ! -S $server ]; then 
-        echo "server is dead $server"; 
-        return 2
-    fi
-
-    realpath_array=()
-
-    for arg in "$@"
-    do
-        realpath_array+=("$(realpath "$arg")")
+    local runtime_dir="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}}"
+    local server=$(find "$runtime_dir" -maxdepth 5 -type s -name "nvim.*.0" -print -quit 2>/dev/null)
+    # Create a local Zsh array to hold the absolute paths
+    local absolute_paths=()
+    local file
+    
+    # Loop through each argument passed to the function ($@)
+    for file in "$@"; do
+        # (:A) is Zsh's built-in, lightning-fast modifier for absolute realpath
+        absolute_paths+=("${file:A}") 
     done
-    echo ${realpath_array[@]}
-    nvim --server $server --remote ${realpath_array[@]}
+    nvim --server "$server" --remote "${absolute_paths[@]}"
 }
