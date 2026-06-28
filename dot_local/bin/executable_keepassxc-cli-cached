@@ -11,4 +11,4 @@ if [[ ! -f "$_KP_CACHE" ]]; then
     chmod 600 "$_KP_CACHE"
 fi
 
-cat "$_KP_CACHE" | /usr/bin/keepassxc-cli "$@"
+cat "$_KP_CACHE" | keepassxc-cli "$@"
