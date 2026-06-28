@@ -1,0 +1,14 @@
+#!/bin/bash
+# Wrapper for keepassxc-cli that caches the database password in a
+# per-user temp file so chezmoi doesn't prompt on every invocation.
+# Cache lives in /tmp and is cleared on reboot.
+_KP_CACHE="/tmp/.kp_${UID}"
+
+if [[ ! -f "$_KP_CACHE" ]]; then
+    read -rs -p "KeePass password: " _KP_PASS
+    echo >&2
+    printf '%s' "$_KP_PASS" > "$_KP_CACHE"
+    chmod 600 "$_KP_CACHE"
+fi
+
+cat "$_KP_CACHE" | /usr/bin/keepassxc-cli "$@"
